@@ -1,0 +1,40 @@
+<div class="modal-crud">
+  <h1 mat-dialog-title>Atualização de consulta</h1>
+  <form class="grid-formulario" [formGroup]="formulario">
+    <input type="hidden" formControlName="idModal" />
+    <mat-form-field appearance="outline">
+      <mat-label for="dataModal" >Data:</mat-label>
+      <textarea matInput type="text" formControlName="dataModal" id="dataModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="senhaModal" >Senha:</mat-label>
+      <textarea matInput type="number" formControlName="senhaModal" id="senhaModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="motivoModal" >Motivo:</mat-label>
+      <textarea matInput type="text" formControlName="motivoModal" id="motivoModal"></textarea>
+    </mat-form-field>
+    <mat-form-field class="mat-select" appearance="outline">
+      <mat-label for="planoParticularModal">Plano / particular:</mat-label>
+      <mat-select formControlName="planoParticularModal" id="planoParticularModal">
+        <mat-option value="PARTICULAR">Particular</mat-option>
+        <mat-option value="UNIMED">Unimed</mat-option>
+        <mat-option value="AMIL">Amil</mat-option>
+        <mat-option value="BRADESCO">Bradesco</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="modal-btns">
+      <button type="submit" (click)="editar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          update
+        </mat-icon>
+      </button>
+      <button type="submit" (click)="deletar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

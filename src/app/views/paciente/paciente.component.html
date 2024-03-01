@@ -1,0 +1,23 @@
+
+<div class="container-grid">
+  <div>
+    <form class="form-paciente" [formGroup]="formulario" (ngSubmit)="onSubmit()" >
+      <label for="nome">Nome</label>
+      <input type="text" formControlName="nome" id="nome" />
+      <label for="cpf" >CPF</label>
+      <input type="text" formControlName="cpf" mask="000.000.000-00"
+        value="{{cpfRecebido | mask:'000.000.000-00'}}" />
+      <label for="dataNascimento" >Data de nascimento</label>
+      <input type="date" formControlName="dataNascimento" id="dataNascimento" />
+      <label for="telefone" >Telefone</label>
+      <input type="text" pattern="(\(\d{2}\)\d{8,9};?)*" formControlName="telefone" id="telefone" />
+
+      <button type="submit" class="btn-form" [disabled]="disabled ? !formulario.valid : true" >
+        <mat-icon class="material-symbols-outlined">forms_add_on</mat-icon>
+      </button>
+    </form>
+  </div>
+  <div>
+    <app-tabela-pacientes></app-tabela-pacientes>
+  </div>
+</div>

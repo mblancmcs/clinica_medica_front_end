@@ -1,0 +1,47 @@
+<div class="modal-crud">
+  <h1 mat-dialog-title>Atualização de atendimento</h1>
+  <form class="grid-formulario" [formGroup]="formulario">
+    <input type="hidden" formControlName="idModal" />
+    <mat-form-field appearance="outline">
+      <mat-label for="dataConsultaModal" >Data:</mat-label>
+      <textarea matInput type="text" formControlName="dataConsultaModal" id="dataConsultaModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="nomeModal" >Paciente:</mat-label>
+      <textarea matInput type="text" formControlName="nomeModal" id="nomeModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="motivoModal" >Motivo:</mat-label>
+      <textarea matInput type="text" formControlName="motivoModal" id="motivoModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="diagnosticoModal">Diagnóstico:</mat-label>
+      <textarea matInput type="text" formControlName="diagnosticoModal" id="diagnosticoModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="receitaRemediosModal">Receita de remédios:</mat-label>
+      <textarea matInput type="text" formControlName="receitaRemediosModal" id="receitaRemediosModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="solicitacaoRetornoModal">Solicitação de retorno:</mat-label>
+      <textarea matInput type="text" formControlName="solicitacaoRetornoModal" id="solicitacaoRetornoModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="complementoModal">Complemento:</mat-label>
+      <textarea matInput type="text" formControlName="complementoModal" id="complementoModal"></textarea>
+    </mat-form-field>
+
+    <div class="modal-btns">
+      <button type="submit" (click)="editar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          update
+        </mat-icon>
+      </button>
+      <button type="submit" (click)="deletar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

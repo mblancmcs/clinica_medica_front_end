@@ -1,0 +1,40 @@
+<div class="container-grid">
+  <div>
+    <form class="formulario" [formGroup]="formulario" (ngSubmit)="registrar()">
+      <label for="login" >Login</label>
+      <input type="text" id="login" formControlName="login"/>
+      <label for="password" >Senha</label>
+      <input type="password" id="password" formControlName="password"/>
+      <label >Perfil</label>
+      <div>
+        <input type="radio" formControlName="role" value="ATENDENTE"/>Atendente<br />
+        <input type="radio" formControlName="role" value="MEDICO"/>Medico<br />
+        <input type="radio" formControlName="role" value="ADMIN"/>Administrador
+      </div>
+      <button class="submit" type="submit" [disabled]="!formulario.valid">
+        <mat-icon class="material-symbols-outlined">forms_add_on</mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="tabela-paginacao">
+    <table>
+      <thead>
+        <tr>
+          <th>Login</th>
+          <th>Autorização</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let usuario of getUsuarios.content">
+        <tr class="areaClicavel" (click)="detalhesUsuario(usuario)" >
+          <td>{{usuario.login}}</td>
+          <td>{{usuario.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="paginacao">
+      <mat-icon class="material-symbols-outlined areaClicavel" (click)="paginaAnterior()">arrow_back</mat-icon>
+      <div>{{paginaAtual + 1}} de {{totalPaginas}}</div>
+      <mat-icon class="material-symbols-outlined areaClicavel" (click)="proximaPagina()">arrow_forward</mat-icon>
+    </div>
+  </div>
+</div>

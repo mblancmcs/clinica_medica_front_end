@@ -1,0 +1,18 @@
+<div class="container">
+  <app-consultas-do-dia (atendimentoEmitter)="atendimentoRecebido($event)"></app-consultas-do-dia>
+  <app-consultas-por-cpf [cpf]="cpfAConsultar"></app-consultas-por-cpf>
+</div>
+<form class="form-atendimento" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id" id="id" />
+  <label>Diagnóstico</label>
+  <label>Receita de remédios</label>
+  <label>Solicitação de retorno</label>
+  <label>Complemento</label>
+  <textarea formControlName="diagnostico" id="diagnostico"></textarea>
+  <textarea formControlName="receitaRemedios" id="receitaRemedios"></textarea>
+  <textarea formControlName="solicitacaoRetorno" id="solicitacaoRetorno"></textarea>
+  <textarea formControlName="complemento" id="complemento"></textarea>
+  <button class="btn-form" [disabled]="!formulario.valid" type="submit">
+    <mat-icon class="material-symbols-outlined">{{btnNome}}</mat-icon>
+  </button>
+</form>

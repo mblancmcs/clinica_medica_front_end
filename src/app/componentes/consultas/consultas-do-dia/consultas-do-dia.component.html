@@ -1,0 +1,40 @@
+<div class="tabela-paginacao">
+  <span class="titulo-tela-componente">Atendimentos do dia</span>
+  <table>
+    <thead>
+      <th>Nome do paciente</th>
+      <th>Motivo</th>
+      <th>Horário</th>
+      <th>Senha</th>
+      <th>Consultar</th>
+    </thead>
+    <tbody *ngIf="atendimentosDoDia.content.length > 0, else semConsultas">
+      <tr *ngFor="let atendimento of atendimentosDoDia.content">
+        <!-- também é possível fazer para cada campo/celula
+        <td *ngFor="let content of consulta.content" >{{content.dadosPaciente.nome}}</td>
+        -->
+        <td>{{atendimento.consulta.dadosPaciente.nome | encurtarNome}}</td>
+        <td>{{atendimento.consulta.motivo | slice:0:20 }}</td>
+        <td>{{atendimento.consulta.data | date:'HH:mm' }}</td>
+        <td>{{atendimento.consulta.senha}}</td>
+        <td *ngIf="atendimento.diagnostico !== null">
+          <mat-icon class="material-symbols-outlined atendimento-realizado areaClicavel"
+          (click)="emitirAtendimento(atendimento)" >
+          done_outline
+          </mat-icon>
+        </td>
+        <td *ngIf="atendimento.diagnostico === null">
+          <mat-icon class="material-symbols-outlined atendimento-a-realizar areaClicavel"
+          (click)="emitirAtendimento(atendimento)" >
+            indeterminate_check_box
+          </mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #semConsultas>
+  <tbody>
+    <td colspan="5" style="color:red">Sem consultas hoje</td>
+  </tbody>
+</ng-template>

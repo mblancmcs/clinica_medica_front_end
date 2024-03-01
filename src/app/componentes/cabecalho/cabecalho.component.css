@@ -1,0 +1,62 @@
+
+.container {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  height:50px;
+  border-bottom: 1px solid #FFF;
+}
+
+.titulo-clinica {
+  display:inline-block;
+  margin:auto auto;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.titulo-tela {
+  display:inline-block;
+  margin:auto auto;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.icons-admin-div {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr) 60px;
+}
+
+.icons-div {
+  display:grid;
+  grid-template-columns: 1fr 60px;
+}
+
+mat-icon {
+  color: #FFF;
+  margin: auto auto;
+  height:fit-content;
+  width: fit-content;
+  border: solid 2px #FFF;
+  border-radius: 5px;
+  padding:2px;
+  font-size:1.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+mat-icon.icon-logout {
+  margin-right: 10px;
+}
+
+#btn-event {
+  height: 25px;
+  margin: auto auto;
+  width: 200px;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #FFF;
+  font-size: 1.1rem;
+}

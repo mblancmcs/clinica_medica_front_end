@@ -1,0 +1,27 @@
+<div class="container">
+  <span class="titulo-clinica">Clinica médica</span>
+  <span class="titulo-tela">{{titulo}}</span>
+  <div [ngClass]="class">
+    @if (role === 'ADMIN' || role === 'ATENDENTE') {
+      <mat-icon
+      class="material-symbols-outlined" (click)="btnAtendenteEvent()">
+        {{cabecalhoAtendenteInfo.btn}}
+      </mat-icon>
+    }
+    @if (role === 'ADMIN' || role === 'MEDICO') {
+      <mat-icon
+      class="material-symbols-outlined" (click)="btnMedicoEvent()">
+        {{cabecalhoMedicoInfo.btn}}
+      </mat-icon>
+    }
+    @if (role === 'ADMIN') {
+      <mat-icon
+      class="material-symbols-outlined" (click)="btnAdminEvent()">
+        {{cabecalhoAdminInfo.btn}}
+      </mat-icon>
+    }
+    <mat-icon class="material-symbols-outlined icon-logout" (click)="btnSair()">
+      logout
+    </mat-icon>
+  </div>
+</div>

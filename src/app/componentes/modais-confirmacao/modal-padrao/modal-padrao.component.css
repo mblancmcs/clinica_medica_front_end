@@ -1,0 +1,98 @@
+
+.modal-btns {
+  text-align: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.modal-btns button {
+  color: #FFF;
+  font-weight: 500;
+  margin: 0 10px;
+  padding: 5px;
+}
+
+.cadastrarAtualizar {
+  background: #a1a1a1;
+}
+
+.modal-confirm.cadastrarAtualizar h1,
+.modal-confirm.cadastrarAtualizar .material-symbols-outlined {
+  color:#fdd33c;
+  font-weight: 400;
+}
+
+.modal-confirm.cadastrarAtualizar [md-dialog-content] {
+  color:#fdd33c;
+  font-weight: 500;
+}
+
+.excluir {
+  background: #a1a1a1;
+}
+
+.modal-confirm.excluir h1 {
+  color:#fdd33c;
+  font-weight: 400;
+}
+
+.modal-confirm.excluir .material-symbols-outlined {
+  color:#fdd33c;
+  font-weight: 500;
+}
+
+.modal-confirm.excluir [md-dialog-content] {
+  color:#fdd33c;
+  font-weight: 500;
+}
+
+.erroOpcao {
+  background:#a1a1a1;
+}
+
+.modal-confirm.erroOpcao h1 {
+  color:#fdd33c;
+  font-weight: 400;
+}
+
+.modal-confirm.erroOpcao .material-symbols-outlined {
+  color:#fdd33c;
+  font-weight: 600;
+}
+
+.modal-confirm.erroOpcao [md-dialog-content] {
+  color:#fdd33c;
+  font-weight: 500;
+}
+
+.erro {
+  padding-bottom:15px;
+  background: #a1a1a1;
+}
+
+.erro h1,
+.erro .material-symbols-outlined,
+.erro [md-dialog-content] {
+  color: #e02b2b;
+  font-weight: 500;
+}
+
+.erro .material-symbols-outlined {
+  font-weight: 600;
+}
+
+.confirmadoExcluir {
+  background: #a1a1a1;
+  padding-bottom:15px;
+}
+
+.confirmadoExcluir h1,
+.confirmadoExcluir .material-symbols-outlined,
+.confirmadoExcluir [md-dialog-content] {
+  color: #fdd33c;
+  font-weight: 500;
+}
+
+.confirmadoExcluir .material-symbols-outlined {
+  font-weight: 600;
+}

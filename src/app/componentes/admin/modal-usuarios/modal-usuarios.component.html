@@ -1,0 +1,34 @@
+<div class="modal-crud">
+  <h1 mat-dialog-title>Atualização de usuário</h1>
+  <form class="grid-formulario" [formGroup]="formulario">
+    <mat-form-field appearance="outline">
+      <mat-label for="loginModal" >Login:</mat-label>
+      <input matInput type="text" formControlName="loginModal" id="loginModal" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="senhaModal" >Nova senha:</mat-label>
+      <input matInput type="password" formControlName="senhaModal" id="senhaModal" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="perfilModal">Perfil:</mat-label>
+      <mat-select formControlName="perfilModal" id="perfilModal">
+        <mat-option value="ADMIN">Administrador</mat-option>
+        <mat-option value="ATENDENTE">Atendente</mat-option>
+        <mat-option value="MEDICO">Médico</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="modal-btns">
+      <button type="submit" (click)="editar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          update
+        </mat-icon>
+      </button>
+      <button type="submit" (click)="deletar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

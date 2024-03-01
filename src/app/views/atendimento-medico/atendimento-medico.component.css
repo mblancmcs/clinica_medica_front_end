@@ -1,0 +1,32 @@
+
+.container {
+  display:flex;
+  justify-content: space-around;
+}
+
+.form-atendimento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 50px 1fr auto
+}
+
+button {
+  grid-column: 1 / 5;
+  border: none;
+  margin-top: 5px;
+}
+
+.btn-form > mat-icon {
+  width: fit-content;
+  height: fit-content;
+  font-size: 2.75rem;
+}
+
+label {
+  text-align:left;
+}
+
+textarea {
+  resize: vertical;
+  max-height: 200px;
+}

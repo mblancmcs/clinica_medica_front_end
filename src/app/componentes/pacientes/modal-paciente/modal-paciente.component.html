@@ -1,0 +1,37 @@
+<div class="modal-crud">
+  <h1 mat-dialog-title>Atualização de paciente</h1>
+  <form class="grid-formulario" [formGroup]="formulario">
+    <input type="hidden" formControlName="idModal" />
+    <mat-form-field appearance="outline">
+      <mat-label for="nomeModal" >Nome:</mat-label>
+      <textarea matInput type="text" formControlName="nomeModal" id="nomeModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="cpfModal" >CPF:</mat-label>
+      <textarea matInput type="number" formControlName="cpfModal" id="cpfModal"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="dataNascimentoModal" >Data de nascimento:</mat-label>
+      <input matInput type="date" formControlName="dataNascimentoModal" id="dataNascimentoModal" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="telefoneModal">Telefone(s):</mat-label>
+      <textarea matInput type="text" pattern="(\(\d{2}\)\d{8,9};?)*"
+        formControlName="telefoneModal" id="telefoneModal"></textarea>
+      <mat-hint>(00) + 8 ou 9 nº. Separador:&nbsp;;</mat-hint>
+    </mat-form-field>
+
+    <div class="modal-btns">
+      <button type="submit" (click)="editar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          update
+        </mat-icon>
+      </button>
+      <button type="submit" (click)="deletar()">
+        <mat-icon class="material-symbols-outlined areaClicavel">
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

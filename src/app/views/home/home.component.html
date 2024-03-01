@@ -1,0 +1,17 @@
+<div class="container-home">
+  <div class="home-bloco-esquerda">
+    <span class="titulo">Clinica médica</span>
+  </div>
+  <div class="home-bloco-direita">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <span class="titulo-form">Login</span><br />
+      <div class="container-form-home">
+        <label for="nome_usuario">Login</label>
+        <input type="text" id="nome_usuario" formControlName="usuario" placeholder="user" />
+        <label for="senha_usuario">Senha</label>
+        <input type="password" id="senha_usuario" formControlName="senha" placeholder="password" />
+        <input class="btn-form" type="submit" value="Acessar"/>
+      </div>
+  </form>
+  </div>
+</div>

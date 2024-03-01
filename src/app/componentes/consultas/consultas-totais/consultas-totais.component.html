@@ -1,0 +1,53 @@
+
+<div class="tabela-paginacao">
+  <div class="cpf-consultas">
+    <label for="cpfConsultas">CPF</label>
+    <input type="number" [formControl]="campoCpf" />
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Nome</th>
+        <th>Plano ou particular</th>
+        <th>Motivo</th>
+      </tr>
+    </thead>
+    <tbody [hidden]="consultasPorCpf"
+      *ngIf="getConsultas.content.length !== 0, else semConsultas">
+      <tr *ngFor="let consulta of getConsultas.content"
+      class="areaClicavel" (click)="detalhesConsulta(consulta)">
+        <td>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
+        <td>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
+        <td>{{consulta.planoParticular | slice:0:20 }}</td>
+        <td>{{consulta.motivo | slice:0:20}}</td>
+      </tr>
+    </tbody>
+    <tbody [hidden]="!consultasPorCpf" *ngIf="consultasPorCpf$ | async" >
+      <tr *ngFor="let consulta of getConsultasPorCpf.content"
+      class="areaClicavel" (click)="detalhesConsulta(consulta)">
+        <td>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
+        <td>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
+        <td>{{consulta.planoParticular | slice:0:20 }}</td>
+        <td>{{consulta.motivo | slice:0:20 }}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="consultasPorCpf && getConsultasPorCpf.content.length === 0">
+      <tr>
+        <td colspan="4" style="color:red">Sem consultas</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="paginacao">
+    <mat-icon class="material-symbols-outlined areaClicavel" (click)="mudarPagina(false)">arrow_back</mat-icon>
+    <div>{{totalPaginas === 0 ? 0 : paginaAtual + 1}} de {{totalPaginas}}</div>
+    <mat-icon class="material-symbols-outlined areaClicavel" (click)="mudarPagina(true)">arrow_forward</mat-icon>
+  </div>
+</div>
+<ng-template #semConsultas>
+  <tbody>
+    <tr>
+      <td colspan="4" style="color:red">Sem consultas</td>
+    </tr>
+  </tbody>
+</ng-template>

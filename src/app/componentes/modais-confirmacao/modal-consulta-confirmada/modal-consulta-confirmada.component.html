@@ -1,0 +1,27 @@
+<div class="modal-confirm {{conteudo.confirmacao}}">
+  <div class="modal-titulo">
+    <mat-icon class="material-symbols-outlined" >{{matIcon}}</mat-icon>
+    <h1 md-dialog-title>{{conteudo.titulo}}</h1>
+  </div>
+  <div md-dialog-content>
+    <span>{{conteudo.mensagem}}</span>
+    <div class="modal-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Motivo</th>
+            <th>Plano / particular</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{conteudo.consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{conteudo.consulta.motivo | slice:0:20 }}</td>
+            <td>{{conteudo.consulta.planoParticular | slice:0:20 }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

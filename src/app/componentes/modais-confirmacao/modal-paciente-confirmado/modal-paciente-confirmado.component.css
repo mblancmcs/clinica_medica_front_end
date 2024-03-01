@@ -1,0 +1,16 @@
+
+.confirmado .modal-titulo .material-symbols-outlined,
+.confirmado [md-dialog-content] span {
+  color: #FFF;
+  font-weight: 500;
+}
+
+.modal-table {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-table td,
+.modal-table th {
+  padding:5px;
+}

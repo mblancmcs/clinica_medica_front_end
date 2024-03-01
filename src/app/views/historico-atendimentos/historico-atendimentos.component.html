@@ -1,0 +1,54 @@
+
+<div class="tabela-paginacao">
+  <div class="cpf-consultas">
+    <label for="cpf">CPF</label>
+    <input type="number" [formControl]="campoCpf" id="cpf" />
+  </div>
+  <table>
+    <thead>
+      <th>Data</th>
+      <th>Nome</th>
+      <th>Motivo</th>
+      <th>Diagnóstico</th>
+      <th>Solicitação de retorno</th>
+    </thead>
+    <tbody [hidden]="atendimentosPorCpf" *ngIf="getAtendimentos.content.length !== 0, else semAtendimentos">
+      <tr *ngFor="let atendimento of getAtendimentos.content" class="areaClicavel"
+        (click)="detalhesAtendimento(atendimento)">
+        <td>{{atendimento.consulta.data | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{atendimento.consulta.dadosPaciente.nome | encurtarNome }}</td>
+        <td>{{atendimento.consulta.motivo | slice:0:20 }}</td>
+        <td>{{atendimento.diagnostico | slice:0:20 }}</td>
+        <td>{{atendimento.solicitacaoRetorno | slice:0:20 }}</td>
+      </tr>
+    </tbody>
+    <tbody [hidden]="!atendimentosPorCpf" *ngIf="atendimentosPorCpf$ | async">
+      <tr *ngFor="let atendimento of getAtendimentosPorCpf.content"
+      class="areaClicavel" (click)="detalhesAtendimento(atendimento)">
+        <td>{{atendimento.consulta.data | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{atendimento.consulta.dadosPaciente.nome | encurtarNome}}</td>
+        <td>{{atendimento.consulta.motivo | slice:0:20 }}</td>
+        <td>{{atendimento.diagnostico | slice:0:20 }}</td>
+        <td>{{atendimento.solicitacaoRetorno | slice:0:20 }}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="atendimentosPorCpf && getAtendimentosPorCpf.content.length === 0" >
+      <tr>
+        <td colspan="5" style="color:red">Paciente sem atendimentos</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="paginacao">
+    <mat-icon class="material-symbols-outlined areaClicavel" (click)="mudarPagina(false)">arrow_back</mat-icon>
+    <div>{{totalPaginas === 0 ? 0 : paginaAtual + 1}} de {{totalPaginas}}</div>
+    <mat-icon class="material-symbols-outlined areaClicavel" (click)="mudarPagina(true)">arrow_forward</mat-icon>
+  </div>
+</div>
+
+<ng-template #semAtendimentos>
+  <tbody>
+    <tr>
+      <td colspan="5" style="color:red">Sem atendimentos</td>
+    </tr>
+  </tbody>
+</ng-template>

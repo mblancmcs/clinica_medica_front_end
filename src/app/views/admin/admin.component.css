@@ -1,0 +1,17 @@
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 40px) 100px 30px;
+}
+
+button {
+  grid-column: 1/3;
+  border: none;
+  margin-top: 5px;
+}
+
+button > mat-icon {
+  width: fit-content;
+  height: fit-content;
+  font-size: 2.75rem;
+}

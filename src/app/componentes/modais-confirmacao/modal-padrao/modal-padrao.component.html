@@ -1,0 +1,11 @@
+<div class="modal-confirm {{conteudo.class}}">
+  <div class="modal-titulo">
+    <mat-icon class="material-symbols-outlined" >{{matIcon}}</mat-icon>
+    <h1 md-dialog-title>{{conteudo.titulo}}</h1>
+  </div>
+  <div md-dialog-content>{{conteudo.mensagem}}</div>
+  <div md-dialog-actions class="modal-btns" *ngIf="btns">
+    <button md-button (click)="dialogRef.close(true)">Sim</button>
+    <button md-button (click)="dialogRef.close(false)">Não</button>
+  </div>
+</div>
