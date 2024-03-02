@@ -11,6 +11,7 @@ import { Cabecalho } from '../../componentes/cabecalho/cabecalho-interface';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { EncurtarNomePipe } from '../../pipes/encurtar-nome.pipe';
+import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-historico-atendimentos',
@@ -61,12 +62,14 @@ export class HistoricoAtendimentosComponent implements OnInit, OnDestroy {
 
   constructor(
     private atendimentosService:AtendimentoService,
+    private authService:AutenticacaoService,
     public dialog:MatDialog,
     private route:Router,
     public dadosCompartilhadosService:CompartilhamentoDadosService
   ) {}
 
   ngOnInit(): void {
+    this.authService.protecaoPaginas();
     this.dadosCompartilhadosService.setCabecalhoMedicoInfo(this.cabecalhoInfo);
     this.listarAtendimentos();
 

@@ -14,6 +14,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalPadraoComponent } from '../../componentes/modais-confirmacao/modal-padrao/modal-padrao.component';
 import { ModalConsultaConfirmadaComponent } from '../../componentes/modais-confirmacao/modal-consulta-confirmada/modal-consulta-confirmada.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-consulta',
@@ -50,12 +51,14 @@ export class ConsultaComponent implements OnInit, OnDestroy {
     private consultaService:ConsultaService,
     private pacienteService: PacienteService,
     private dadosCompartilhadosService: CompartilhamentoDadosService,
+    private authService: AutenticacaoService,
     private route: Router,
     private dialog:MatDialog,
     // public dialogRefConsulta:MatDialogRef<ModalPadraoComponent>
   ) {}
 
   ngOnInit(): void {
+    this.authService.protecaoPaginas();
     this.dadosCompartilhadosService.setCabecalhoAtendenteInfo(this.cabecalhoInfo);
     this.consultaService.mensagemErro$.subscribe({
       next: (mensagemErro) => {

@@ -13,6 +13,7 @@ import { ModalPadraoComponent } from '../../componentes/modais-confirmacao/modal
 import { MatDialog } from '@angular/material/dialog';
 import { ModalPacienteConfirmadoComponent } from '../../componentes/modais-confirmacao/modal-paciente-confirmado/modal-paciente-confirmado.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-paciente',
@@ -45,6 +46,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   constructor(
     private dadosCompartilhados: CompartilhamentoDadosService,
+    private authService:AutenticacaoService,
     private formBuilder:FormBuilder,
     private route:Router,
     private pacienteService:PacienteService,
@@ -52,6 +54,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.authService.protecaoPaginas();
     this.dadosCompartilhados.setCabecalhoAtendenteInfo(this.cabecalhoInfo);
     this.pacienteService.getMensagemErro().subscribe({
       next: (mensagemErro) => {

@@ -59,6 +59,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.authService.protecaoPaginas();
     this.dadosCompartilhadosService.setCabecalhoMedicoInfo(this.cabecalhoMedicoInfo);
     this.dadosCompartilhadosService.setCabecalhoAtendenteInfo(this.cabecalhoAtendenteInfo);
     this.dadosCompartilhadosService.setCabecalhoAdminInfo(this.cabecalhoAdminInfo);

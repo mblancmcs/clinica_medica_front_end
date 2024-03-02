@@ -16,6 +16,7 @@ export class AutenticacaoService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public loggedInUserSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   loggedInUserId= this.loggedInUserSubject.asObservable();
+  authPath:string[] = [];
 
   constructor(private http: HttpClient, private router: Router, private jwtService: JwtService) { }
 
@@ -35,11 +36,17 @@ export class AutenticacaoService {
         localStorage.setItem('role', role);
         localStorage.setItem('id', id);
         if(role === 'ATENDENTE') {
+          this.authPath = ['consulta', 'paciente'];
+          localStorage.setItem('authPath', this.authPath.toString());
           this.router.navigate(['/consulta']);
-        } else if(role === 'ADMIN') {
-          this.router.navigate(['/admin']);
         } else if(role === 'MEDICO') {
+          this.authPath = ['atendimento', 'historicoAtendimentos'];
+          localStorage.setItem('authPath', this.authPath.toString());
           this.router.navigate(['/atendimento']);
+        } else if(role === 'ADMIN') {
+          this.authPath = ['admin', 'consulta', 'paciente', 'atendimento', 'historicoAtendimentos'];
+          localStorage.setItem('authPath', this.authPath.toString());
+          this.router.navigate(['/admin']);
         }
       },
       error: (error) => {
@@ -75,6 +82,13 @@ export class AutenticacaoService {
     //localStorage.removeItem('token');
     localStorage.clear();
     this.router.navigate(['/home']);
+  }
+
+  protecaoPaginas() {
+    let authPath = localStorage.getItem('authPath')?.split(',') as string[];
+    if(!authPath.includes(this.router.url.replace('/', ''))) {
+      this.router.navigate(['/home']);
+    }
   }
 
 }

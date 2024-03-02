@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { AtendimentoModal } from '../../componentes/modais-confirmacao/interface-modais';
 import { ModalAtendimentoConfirmadoComponent } from '../../componentes/modais-confirmacao/modal-atendimento-confirmado/modal-atendimento-confirmado.component';
+import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-atendimento-medico',
@@ -46,12 +47,13 @@ export class AtendimentoMedicoComponent implements OnInit {
     private formBuilder:FormBuilder,
     private router:Router,
     private atendimentoService:AtendimentoService,
+    private authService: AutenticacaoService,
     private dadosCompartilhadosService:CompartilhamentoDadosService,
     private dialog:MatDialog
   ) {}
 
   ngOnInit(): void {
-
+    this.authService.protecaoPaginas();
     this.dadosCompartilhadosService.setCabecalhoMedicoInfo(this.cabecalhoInfo);
 
     this.formulario = this.formBuilder.group({

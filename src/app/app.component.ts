@@ -42,10 +42,9 @@ import { Cabecalho } from './componentes/cabecalho/cabecalho-interface';
     CompartilhamentoDadosService
   ]
 })
-export class AppComponent implements OnInit, AfterContentChecked {
+export class AppComponent implements AfterContentChecked {
   title = 'clinica_medica';
   userRole!:string;
-  authPath = ['consulta', 'paciente', 'atendimento', 'historicoAtendimentos'];
 
   constructor(
     public rota:Router,
@@ -55,18 +54,6 @@ export class AppComponent implements OnInit, AfterContentChecked {
     const token = localStorage.getItem('token') === null ? '' : localStorage.getItem('token') as string;
     this.userRole = this.JwtService.getClaim(token, 'role');
     console.log('user role: ', this.userRole);
-  }
-
-  ngOnInit() {
-    /* if(this.userRole === 'ATENDENTE') {
-      this.authPath = ['consulta', 'paciente'];
-    } else if(this.userRole === 'MEDICO') {
-      this.authPath = ['historicoAtendimentos', 'atendimento'];
-    }
-
-    if(!this.authPath.includes(this.rota.url.replace('/', ''))) {
-      this.rota.navigate(['/home']);
-    } */
   }
 
   ngAfterContentChecked(): void {
