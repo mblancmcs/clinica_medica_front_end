@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalUsuariosComponent } from '../../componentes/admin/modal-usuarios/modal-usuarios.component';
 import { UsuarioModal } from '../../componentes/modais-confirmacao/interface-modais';
 import { ModalUsuarioConfirmadoComponent } from '../../componentes/modais-confirmacao/modal-usuario-confirmado/modal-usuario-confirmado.component';
+import { MensagemComponent, MensagemValidacao } from '../../componentes/mensagem/mensagem.component';
+import { CustomValidators } from '../../CustomValidators';
 
 @Component({
   selector: 'app-admin',
@@ -20,7 +22,8 @@ import { ModalUsuarioConfirmadoComponent } from '../../componentes/modais-confir
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MensagemComponent
   ],
   providers: [],
   templateUrl: './admin.component.html',
@@ -49,6 +52,16 @@ export class AdminComponent implements OnInit, OnDestroy {
   totalPaginas = 0;
   alertSemUsuarios = false;
   authSubscription:Subscription = new Subscription();
+  erroLogin = false;
+  erroSenha = false;
+  msgValidacaoLogin:MensagemValidacao = {
+    mensagem: '',
+    class: 'alerta'
+  };
+  msgValidacaoSenha:MensagemValidacao = {
+    mensagem: '',
+    class: 'alerta'
+  };
 
   constructor(
     private router:Router,
@@ -72,11 +85,12 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.formulario = this.formBuilder.group({
       login: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(4)
+        Validators.minLength(6)
       ])],
       password: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(8),
+        CustomValidators.validarSenha()
       ])],
       role: ['', Validators.required]
     })
@@ -158,6 +172,70 @@ export class AdminComponent implements OnInit, OnDestroy {
     } else {
       this.paginaAtual++;
       this.alertSemUsuarios = true;
+    }
+  }
+
+  validarLogin() {
+    let inputLogin = this.formulario.value.login;
+    if(inputLogin.includes(' ')) {
+      this.erroLogin = true;
+      this.msgValidacaoLogin.mensagem = 'Não é permitido espaços em branco';
+    } else if(inputLogin.length < 8) {
+      this.erroLogin = true;
+      this.msgValidacaoLogin.mensagem = 'Mínimo de 8 caracteres';
+    } else {
+      this.erroLogin = false;
+    }
+  }
+
+  validarSenha() {
+    let msgValidacao = "Necessário: 8 caracteres, letra maiúscula, letra minúscula,"
+                        + " número, caracter especial";
+    let inputSenha = this.formulario.value.password;
+
+    const letras = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
+    const numeros = "0,1,2,3,4,5,6,7,8,9";
+    const numerosArray = numeros.split(',');
+    const letrasMinusculas = letras.split(',');
+    const letrasMaiusculas = letras.toUpperCase().split(',');
+    const caracteresEspeciais = [
+      '!', '@', '#', '$', '%', '^', '&', '*', '(', ')',
+      '[', ']', '{', '}', '<', '>', '|', '\\', '/',
+      ':', ';', ',', '.', '?', '-', '_', '+', '=', '~'
+    ];
+    if(inputSenha.length >= 8) {
+      msgValidacao = msgValidacao.replace(' 8 caracteres', '');
+    }
+    letrasMaiusculas.forEach(i => {
+      if(inputSenha.includes(i)) {
+        msgValidacao = msgValidacao.replace(', letra maiúscula', '');
+      }
+    });
+    letrasMinusculas.forEach(i => {
+      if(inputSenha.includes(i)) {
+        msgValidacao = msgValidacao.replace(', letra minúscula', '');
+      }
+    });
+    numerosArray.forEach(i => {
+      if(inputSenha.includes(i)) {
+        msgValidacao = msgValidacao.replace(', número', '');
+      }
+    });
+    caracteresEspeciais.forEach(i => {
+      if(inputSenha.includes(i)) {
+        msgValidacao = msgValidacao.replace(', caracter especial', '');
+      }
+    });
+    if(inputSenha.includes(' ')) {
+      msgValidacao = 'Não é permitido espaços em branco';
+    }
+    console.log(msgValidacao);
+    if(msgValidacao !== 'Necessário:') {
+      this.erroSenha = true;
+      this.msgValidacaoSenha.mensagem = msgValidacao;
+    } else {
+      this.erroSenha = false;
+      this.msgValidacaoSenha.mensagem = '';
     }
   }
 

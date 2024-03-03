@@ -4,7 +4,7 @@
 </div>
 <form class="form-atendimento" [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <input type="hidden" formControlName="id" id="id" />
-  <label>Diagnóstico</label>
+  <label>Diagnóstico<span class="campos-obrigatorios"> *</span></label>
   <label>Receita de remédios</label>
   <label>Solicitação de retorno</label>
   <label>Complemento</label>
@@ -12,6 +12,9 @@
   <textarea formControlName="receitaRemedios" id="receitaRemedios"></textarea>
   <textarea formControlName="solicitacaoRetorno" id="solicitacaoRetorno"></textarea>
   <textarea formControlName="complemento" id="complemento"></textarea>
+  <div class="campos-obrigatorios">
+    <span>* campos obrigatórios</span>
+  </div>
   <button class="btn-form" [disabled]="!formulario.valid" type="submit">
     <mat-icon class="material-symbols-outlined">{{btnNome}}</mat-icon>
   </button>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { GetUsuarios, Usuario } from '../../models/usuario-interface';
 import { Router } from '@angular/router';
 import { Token } from '../../models/token-interface';
@@ -13,7 +13,7 @@ import { Autenticacao } from '../../models/autenticacao-interfaces';
 export class AutenticacaoService {
 
   private readonly api = 'http://localhost:8080/auth';
-  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn: Subject<boolean> = new Subject<boolean>();
   public loggedInUserSubject: BehaviorSubject<string> = new BehaviorSubject<string>("");
   loggedInUserId= this.loggedInUserSubject.asObservable();
   authPath:string[] = [];
@@ -24,7 +24,7 @@ export class AutenticacaoService {
     return this.loggedIn.asObservable();
   }
 
-  login(login:Autenticacao): void {
+  login(login:Autenticacao): Promise<void> | void {
     this.http.post<Token>(`${this.api}/login`, login).subscribe({
       next: (response) => {
         const token = response.token;

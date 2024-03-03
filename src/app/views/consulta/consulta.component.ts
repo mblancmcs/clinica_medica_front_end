@@ -15,17 +15,24 @@ import { ModalPadraoComponent } from '../../componentes/modais-confirmacao/modal
 import { ModalConsultaConfirmadaComponent } from '../../componentes/modais-confirmacao/modal-consulta-confirmada/modal-consulta-confirmada.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
+import { ValidaCpf } from '../../util/ValidaCpf';
+import { MensagemComponent } from '../../componentes/mensagem/mensagem.component';
+import { CommonModule } from '@angular/common';
+import { CustomValidators } from '../../CustomValidators';
+import { GerarCpf } from '../../util/GerarCpf';
 
 @Component({
   selector: 'app-consulta',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ConsultasTotaisComponent,
     MatIconModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    MensagemComponent
   ],
   providers: [
     provideNgxMask()
@@ -45,6 +52,8 @@ export class ConsultaComponent implements OnInit, OnDestroy {
   disabled: boolean = true;
   consultaSubscription = new Subscription();
   dataForm = false;
+  cpfInvalido = false;
+  dataAtual = new Date().toISOString().slice(0, 10);
 
   constructor(
     private formBuilder:FormBuilder,
@@ -75,7 +84,9 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
     this.formulario = this.formBuilder.group({
       cpf: ['', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern(/(.|\s)*\S(.|\s)*/),
+        CustomValidators.isValidCpf()
       ])],
       data: '',
       hora: '',
@@ -188,6 +199,22 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
   habilitarData() {
     this.formulario.value.data ? this.dataForm = true : this.dataForm = false;
+  }
+
+  validarCpf() {
+    const cpfInput = this.formulario.value.cpf;
+    const cpfValidado = ValidaCpf.validar(cpfInput);
+    if(cpfInput.length < 11 || cpfValidado?.cpfNotValid === true) {
+      this.cpfInvalido = true;
+    } else {
+      this.cpfInvalido = false;
+      this.idPacientePorCpf();
+    }
+  }
+
+  gerarCpf() {
+    this.formulario.patchValue({cpf: GerarCpf.generate()});
+    this.idPacientePorCpf();
   }
 
 }

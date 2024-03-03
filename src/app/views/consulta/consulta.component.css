@@ -15,4 +15,12 @@ button > mat-icon {
   height: fit-content;
   font-size: 2.75rem;
 }
-/* o css do mat-icon do cabecalho está bom. Pegar como referencia */
+
+.input-btn-cpf {
+  white-space: nowrap;
+}
+
+.input-btn-cpf > mat-icon {
+  vertical-align: middle;
+  font-size: 1.5rem;
+}

@@ -2,16 +2,27 @@
 <div class="container-grid">
   <div>
     <form class="form-paciente" [formGroup]="formulario" (ngSubmit)="onSubmit()" >
-      <label for="nome">Nome</label>
+      <label for="nome">Nome<span class="campos-obrigatorios"> *</span></label>
       <input type="text" formControlName="nome" id="nome" />
-      <label for="cpf" >CPF</label>
-      <input type="text" formControlName="cpf" mask="000.000.000-00"
-        value="{{cpfRecebido | mask:'000.000.000-00'}}" />
-      <label for="dataNascimento" >Data de nascimento</label>
-      <input type="date" formControlName="dataNascimento" id="dataNascimento" />
-      <label for="telefone" >Telefone</label>
-      <input type="text" pattern="(\(\d{2}\)\d{8,9};?)*" formControlName="telefone" id="telefone" />
-
+      <label for="cpf" >CPF<span class="campos-obrigatorios"> *</span></label>
+      <div>
+        <div class="input-btn-cpf">
+          <input type="text" formControlName="cpf" mask="000.000.000-00"
+            value="{{cpfRecebido | mask:'000.000.000-00'}}" (change)="validarCpf()" />
+          <mat-icon class="material-symbols-outlined areaClicavel" (click)="gerarCpf()">manage_accounts</mat-icon>
+        </div>
+        <app-mensagem *ngIf="cpfInvalido" [mensagemValidacao]="{
+          mensagem: 'CPF inválido',
+          class: 'erro'
+        }" ></app-mensagem>
+      </div>
+      <label for="dataNascimento" >Data de nascimento<span class="campos-obrigatorios"> *</span></label>
+      <input type="date" max="{{dataAtual}}" formControlName="dataNascimento" id="dataNascimento" />
+      <label for="telefone" >Telefone<span class="campos-obrigatorios"> *</span></label>
+      <input type="text" mask="(00)000000009" formControlName="telefone" id="telefone" />
+      <div class="campos-obrigatorios">
+        <span>* campos obrigatórios</span>
+      </div>
       <button type="submit" class="btn-form" [disabled]="disabled ? !formulario.valid : true" >
         <mat-icon class="material-symbols-outlined">forms_add_on</mat-icon>
       </button>

@@ -10,6 +10,9 @@
         <input type="text" id="nome_usuario" formControlName="usuario" placeholder="user" />
         <label for="senha_usuario">Senha</label>
         <input type="password" id="senha_usuario" formControlName="senha" placeholder="password" />
+        <div *ngIf="erroLogin" class="mensagem-validacao">
+          <app-mensagem [mensagemValidacao]="mensagemValidacao" ></app-mensagem>
+        </div>
         <input class="btn-form" type="submit" value="Acessar"/>
       </div>
   </form>

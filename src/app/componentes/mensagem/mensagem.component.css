@@ -1,0 +1,15 @@
+.erro {
+  padding-top: 0px;
+  color:#ff3e3e;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.alerta {
+  padding-top: 0px;
+  color: #e9dd33;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: right;
+}

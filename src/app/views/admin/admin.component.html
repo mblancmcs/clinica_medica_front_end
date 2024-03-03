@@ -1,15 +1,24 @@
 <div class="container-grid">
   <div>
     <form class="formulario" [formGroup]="formulario" (ngSubmit)="registrar()">
-      <label for="login" >Login</label>
-      <input type="text" id="login" formControlName="login"/>
-      <label for="password" >Senha</label>
-      <input type="password" id="password" formControlName="password"/>
-      <label >Perfil</label>
+      <label for="login" >Login<span class="campos-obrigatorios"> *</span></label>
+      <input type="text" id="login" formControlName="login" (change)="validarLogin()"/>
+      <div *ngIf="erroLogin" class="mensagem-validacao">
+        <app-mensagem [mensagemValidacao]="msgValidacaoLogin" ></app-mensagem>
+      </div>
+      <label for="password" >Senha<span class="campos-obrigatorios"> *</span></label>
+      <input type="password" id="password" formControlName="password" (change)="validarSenha()"/>
+      <div *ngIf="erroSenha" class="mensagem-validacao">
+        <app-mensagem [mensagemValidacao]="msgValidacaoSenha" ></app-mensagem>
+      </div>
+      <label >Perfil<span class="campos-obrigatorios"> *</span></label>
       <div>
         <input type="radio" formControlName="role" value="ATENDENTE"/>Atendente<br />
         <input type="radio" formControlName="role" value="MEDICO"/>Medico<br />
         <input type="radio" formControlName="role" value="ADMIN"/>Administrador
+      </div>
+      <div class="campos-obrigatorios">
+        <span>* campos obrigatórios</span>
       </div>
       <button class="submit" type="submit" [disabled]="!formulario.valid">
         <mat-icon class="material-symbols-outlined">forms_add_on</mat-icon>

@@ -29,4 +29,18 @@ label {
 textarea {
   resize: vertical;
   max-height: 200px;
+  min-width: 50px;
+  max-width: 90%;
+}
+
+.campos-obrigatorios {
+  grid-column: 1/5;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color:#858585
+}
+
+div.campos-obrigatorios {
+  margin-left: 15px;
 }

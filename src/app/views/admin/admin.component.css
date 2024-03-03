@@ -1,7 +1,8 @@
 .formulario {
   display: grid;
+  max-width: 400px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(2, 40px) 100px 30px;
+  /* grid-template-rows: repeat(2, 40px) 100px 30px; */
 }
 
 button {
@@ -14,4 +15,8 @@ button > mat-icon {
   width: fit-content;
   height: fit-content;
   font-size: 2.75rem;
+}
+
+.mensagem-validacao {
+  grid-column: 1/3;
 }
