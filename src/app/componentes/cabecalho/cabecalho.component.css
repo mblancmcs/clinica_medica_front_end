@@ -5,6 +5,7 @@
   grid-template-columns: repeat(3, 1fr);
   height:50px;
   border-bottom: 1px solid #FFF;
+  background: linear-gradient(90deg, rgba(72,203,230,1) 0%,  rgba(30,255,117,1) 100%);
 }
 
 .titulo-clinica {

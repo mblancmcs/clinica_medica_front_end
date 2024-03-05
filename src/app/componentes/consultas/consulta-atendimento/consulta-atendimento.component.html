@@ -8,15 +8,14 @@
       <th>Diagnóstico</th>
     </thead>
     <tbody *ngIf="atendimentosPorCpf.content.length > 0, else semConsultas">
-      <tr *ngFor="let atendimento of atendimentosPorCpf.content"
+      <tr *ngFor="let atendimento of atendimentosPorCpf.content, let i = index"
+      (mouseover)="indexAtendimento = i"
+      [@highlightedState]="indexAtendimento === i ? 'highlighted' : 'default'"
       class="areaClicavel" (click)="detalhesAtendimento(atendimento)">
-        <!-- também é possível fazer para cada campo/celula
-        <td *ngFor="let content of consulta.content" >{{content.dadosPaciente.nome}}</td>
-        -->
-        <td>{{atendimento.consulta.dadosPaciente.nome | encurtarNome }}</td>
-        <td>{{atendimento.consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{atendimento.consulta.motivo | slice:0:20 }}</td>
-        <td>{{atendimento.diagnostico | slice:0:20 }}</td>
+        <td @listState>{{atendimento.consulta.dadosPaciente.nome | encurtarNome }}</td>
+        <td @listState>{{atendimento.consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
+        <td @listState>{{atendimento.consulta.motivo | slice:0:20 }}</td>
+        <td @listState>{{atendimento.diagnostico | slice:0:20 }}</td>
       </tr>
     </tbody>
   </table>
@@ -28,6 +27,6 @@
 </div>
 <ng-template #semConsultas>
   <tbody>
-    <td colspan="4" style="color:red">Selecione uma consulta</td>
+    <td @listState colspan="4" style="color:red">Selecione uma consulta</td>
   </tbody>
 </ng-template>

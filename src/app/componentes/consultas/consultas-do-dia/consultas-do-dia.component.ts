@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AtendimentoService } from '../../../service/atendimento/atendimento.service';
 import { Atendimento, GetAtendimentos } from '../../../models/atendimento-interfaces';
 import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
+import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../../animacoes';
 
 @Component({
   selector: 'app-consultas-do-dia',
@@ -17,6 +18,11 @@ import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
     EncurtarNomePipe
   ],
   providers: [],
+  animations: [
+    listStateTrigger,
+    highlightedStateTrigger,
+    enabledButtonTrigger
+  ],
   templateUrl: './consultas-do-dia.component.html',
   styleUrl: './consultas-do-dia.component.css'
 })
@@ -25,6 +31,7 @@ export class ConsultasDoDiaComponent implements OnInit, OnDestroy {
   atendimentosDoDia!:GetAtendimentos;
   atendimentoSubscription:Subscription = new Subscription();
   @Output() atendimentoEmitter = new EventEmitter<Atendimento>();
+  indexAtendimento = -1;
 
   constructor(private atendimentoService:AtendimentoService) {}
 

@@ -6,7 +6,7 @@ import { PacienteService } from '../../service/paciente/paciente.service';
 import { Router } from '@angular/router';
 import { CompartilhamentoDadosService } from '../../service/compartilhamento-dados.service';
 import { ConsultasTotaisComponent } from '../../componentes/consultas/consultas-totais/consultas-totais.component';
-import { Subscription, catchError, of } from 'rxjs';
+import { Observable, Subscription, catchError, of } from 'rxjs';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho-interface';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmModal, ConsultaModal } from '../../componentes/modais-confirmacao/interface-modais';
@@ -20,6 +20,7 @@ import { MensagemComponent } from '../../componentes/mensagem/mensagem.component
 import { CommonModule } from '@angular/common';
 import { CustomValidators } from '../../CustomValidators';
 import { GerarCpf } from '../../util/GerarCpf';
+import { enabledButtonTrigger, shakeTrigger } from '../../animacoes';
 
 @Component({
   selector: 'app-consulta',
@@ -37,6 +38,10 @@ import { GerarCpf } from '../../util/GerarCpf';
   providers: [
     provideNgxMask()
   ],
+  animations: [
+    enabledButtonTrigger,
+    shakeTrigger
+  ],
   templateUrl: './consulta.component.html',
   styleUrl: './consulta.component.css'
 })
@@ -53,6 +58,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
   consultaSubscription = new Subscription();
   dataForm = false;
   cpfInvalido = false;
+  cpfState = '';
   dataAtual = new Date().toISOString().slice(0, 10);
 
   constructor(
@@ -206,8 +212,10 @@ export class ConsultaComponent implements OnInit, OnDestroy {
     const cpfValidado = ValidaCpf.validar(cpfInput);
     if(cpfInput.length < 11 || cpfValidado?.cpfNotValid === true) {
       this.cpfInvalido = true;
+      this.cpfState = 'invalido';
     } else {
       this.cpfInvalido = false;
+      this.cpfState = '';
       this.idPacientePorCpf();
     }
   }

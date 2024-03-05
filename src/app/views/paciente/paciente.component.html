@@ -7,7 +7,7 @@
       <label for="cpf" >CPF<span class="campos-obrigatorios"> *</span></label>
       <div>
         <div class="input-btn-cpf">
-          <input type="text" formControlName="cpf" mask="000.000.000-00"
+          <input type="text" [@shakeAnimation]="cpfState" formControlName="cpf" mask="000.000.000-00"
             value="{{cpfRecebido | mask:'000.000.000-00'}}" (change)="validarCpf()" />
           <mat-icon class="material-symbols-outlined areaClicavel" (click)="gerarCpf()">manage_accounts</mat-icon>
         </div>
@@ -23,7 +23,8 @@
       <div class="campos-obrigatorios">
         <span>* campos obrigatórios</span>
       </div>
-      <button type="submit" class="btn-form" [disabled]="disabled ? !formulario.valid : true" >
+      <button type="submit" class="btn-form" [disabled]="disabled ? !formulario.valid : true"
+        [@enabledButton]="formulario.valid ? 'enabled' : 'disabled'" >
         <mat-icon class="material-symbols-outlined">forms_add_on</mat-icon>
       </button>
     </form>

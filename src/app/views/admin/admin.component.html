@@ -2,12 +2,16 @@
   <div>
     <form class="formulario" [formGroup]="formulario" (ngSubmit)="registrar()">
       <label for="login" >Login<span class="campos-obrigatorios"> *</span></label>
-      <input type="text" id="login" formControlName="login" (change)="validarLogin()"/>
+      <input type="text" id="login" formControlName="login"
+        [@shakeAnimation]="erroLogin ? 'invalido' : ''"
+        (change)="validarLogin()"/>
       <div *ngIf="erroLogin" class="mensagem-validacao">
         <app-mensagem [mensagemValidacao]="msgValidacaoLogin" ></app-mensagem>
       </div>
       <label for="password" >Senha<span class="campos-obrigatorios"> *</span></label>
-      <input type="password" id="password" formControlName="password" (change)="validarSenha()"/>
+      <input type="password" id="password" formControlName="password"
+        [@shakeAnimation]="erroSenha ? 'invalido' : ''"
+        (change)="validarSenha()"/>
       <div *ngIf="erroSenha" class="mensagem-validacao">
         <app-mensagem [mensagemValidacao]="msgValidacaoSenha" ></app-mensagem>
       </div>
@@ -20,7 +24,8 @@
       <div class="campos-obrigatorios">
         <span>* campos obrigatórios</span>
       </div>
-      <button class="submit" type="submit" [disabled]="!formulario.valid">
+      <button class="submit" type="submit" [disabled]="!formulario.valid"
+        [@enabledButton]="formulario.valid ? 'enabled' : 'disabled'">
         <mat-icon class="material-symbols-outlined">forms_add_on</mat-icon>
       </button>
     </form>
@@ -33,8 +38,9 @@
           <th>Autorização</th>
         </tr>
       </thead>
-      <tbody *ngFor="let usuario of getUsuarios.content">
-        <tr class="areaClicavel" (click)="detalhesUsuario(usuario)" >
+      <tbody *ngFor="let usuario of getUsuarios.content, let i = index">
+        <tr @listState class="areaClicavel" (click)="detalhesUsuario(usuario)"
+          (mouseover)="indexUser = i" [@highlightedState]="indexUser === i ? 'highlighted' : 'default' " >
           <td>{{usuario.login}}</td>
           <td>{{usuario.role}}</td>
         </tr>

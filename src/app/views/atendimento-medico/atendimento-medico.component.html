@@ -15,7 +15,7 @@
   <div class="campos-obrigatorios">
     <span>* campos obrigatórios</span>
   </div>
-  <button class="btn-form" [disabled]="!formulario.valid" type="submit">
+  <button [@enabledButton]="formulario.valid ? 'enabled' : 'disabled'" class="btn-form" [disabled]="!formulario.valid" type="submit">
     <mat-icon class="material-symbols-outlined">{{btnNome}}</mat-icon>
   </button>
 </form>

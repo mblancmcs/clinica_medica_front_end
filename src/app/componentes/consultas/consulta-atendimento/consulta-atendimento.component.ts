@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalAtendimentoComponent } from '../../atendimento/modal-atendimento/modal-atendimento.component';
 import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { Router } from '@angular/router';
+import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../../animacoes';
 
 @Component({
   selector: 'app-consultas-por-cpf',
@@ -18,6 +19,10 @@ import { Router } from '@angular/router';
     EncurtarNomePipe
   ],
   providers: [],
+  animations: [
+    listStateTrigger,
+    highlightedStateTrigger
+  ],
   templateUrl: './consulta-atendimento.component.html',
   styleUrl: './consulta-atendimento.component.css'
 })
@@ -29,6 +34,7 @@ export class ConsultasPorCpfComponent implements OnDestroy, OnChanges {
   paginaAtual = 0;
   totalPaginas = 0;
   alertSemAtendimentos = false;
+  indexAtendimento = -1;
 
   constructor(
     private atendimentoService:AtendimentoService,

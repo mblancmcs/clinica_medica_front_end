@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalConsultaComponent } from '../modal-consulta/modal-consulta.component';
 import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { highlightedStateTrigger, listStateTrigger } from '../../../animacoes';
 
 @Component({
   selector: 'app-consultas-totais',
@@ -20,6 +22,10 @@ import { Router } from '@angular/router';
     EncurtarNomePipe
   ],
   providers: [],
+  animations: [
+    listStateTrigger,
+    highlightedStateTrigger
+  ],
   templateUrl: './consultas-totais.component.html',
   styleUrl: './consultas-totais.component.css'
 })
@@ -33,6 +39,7 @@ export class ConsultasTotaisComponent implements OnInit, OnDestroy {
   totalPaginas = 0;
   alertSemAtendimentos = false;
   campoCpf = new FormControl();
+  indexConsulta = -1;
 
   consultasPorCpf$ = this.campoCpf.valueChanges.pipe(
     filter((input) => input !== null),

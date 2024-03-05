@@ -14,25 +14,29 @@
     </thead>
     <tbody [hidden]="consultaPorCpf"
       *ngIf="getPacientes.content.length !== 0, else semPacientes">
-      <tr *ngFor="let paciente of getPacientes.content"
+      <tr *ngFor="let paciente of getPacientes.content; let i = index"
+      (mouseover)="indexPaciente = i"
+      [@highlightedState]="indexPaciente === i ? 'highlighted' : 'default'"
       class="areaClicavel" (click)="detalhesPaciente(paciente)">
         <!-- <td>{{paciente.id}}</td> -->
-        <td>{{paciente.nome | encurtarNome}}</td>
-        <td>{{paciente.dataNascimento | date:'dd/MM/yyyy'}}</td>
-        <td>{{paciente.telefone}}</td>
+        <td @listState>{{paciente.nome | encurtarNome}}</td>
+        <td @listState>{{paciente.dataNascimento | date:'dd/MM/yyyy'}}</td>
+        <td @listState>{{paciente.telefone}}</td>
       </tr>
     </tbody>
     <tbody [hidden]="!consultaPorCpf" *ngIf="pacientesPorCpf$ | async">
-      <tr *ngFor="let paciente of getPacientesPorCpf.content"
+      <tr *ngFor="let paciente of getPacientesPorCpf.content; let i = index"
+      (mouseover)="indexPaciente = i"
+      [@highlightedState]="indexPaciente === i ? 'highlighted' : 'default'"
       class="areaClicavel" (click)="detalhesPaciente(paciente)">
         <!-- <td>{{paciente.id}}</td> -->
-        <td>{{paciente.nome | encurtarNome}}</td>
-        <td>{{paciente.dataNascimento | date:'dd/MM/yyyy'}}</td>
-        <td>{{paciente.telefone}}</td>
+        <td @listState>{{paciente.nome | encurtarNome}}</td>
+        <td @listState>{{paciente.dataNascimento | date:'dd/MM/yyyy'}}</td>
+        <td @listState>{{paciente.telefone}}</td>
       </tr>
     </tbody>
     <tbody *ngIf="consultaPorCpf && getPacientesPorCpf.content.length === 0" >
-      <tr>
+      <tr @listState>
         <td colspan="5">Não há mais pacientes</td>
       </tr>
     </tbody>
@@ -46,7 +50,7 @@
 
 <ng-template #semPacientes >
   <tbody>
-    <tr>
+    <tr @listState>
       <td colspan="5">Sem pacientes</td>
     </tr>
   </tbody>

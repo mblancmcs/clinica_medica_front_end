@@ -19,6 +19,7 @@ import { MensagemComponent } from '../../componentes/mensagem/mensagem.component
 import { CommonModule } from '@angular/common';
 import { ValidaCpf } from '../../util/ValidaCpf';
 import { GerarCpf } from '../../util/GerarCpf';
+import { enabledButtonTrigger, shakeTrigger } from '../../animacoes';
 
 @Component({
   selector: 'app-paciente',
@@ -36,6 +37,10 @@ import { GerarCpf } from '../../util/GerarCpf';
   providers: [
     provideNgxMask()
   ],
+  animations: [
+    enabledButtonTrigger,
+    shakeTrigger
+  ],
   templateUrl: './paciente.component.html',
   styleUrl: './paciente.component.css'
 })
@@ -50,6 +55,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
   public formulario!:FormGroup;
   public disabled = true;
   public cpfInvalido = false;
+  public cpfState = '';
   private pacienteSubscription:Subscription = new Subscription();
   dataAtual = new Date().toISOString().slice(0, 10);
 
@@ -151,6 +157,8 @@ export class PacienteComponent implements OnInit, OnDestroy {
     const cpfValidado = ValidaCpf.validar(cpfInput);
     if(cpfInput.length < 11 || cpfValidado?.cpfNotValid === true) {
       this.cpfInvalido = true;
+      this.cpfState = '';
+      this.cpfState = 'invalido'
     } else {
       this.cpfInvalido = false;
     }
@@ -158,6 +166,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   gerarCpf() {
     this.formulario.patchValue({cpf: GerarCpf.generate()});
+    this.validarCpf();
   }
 
 }

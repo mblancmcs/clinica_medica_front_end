@@ -39,7 +39,8 @@ import { Cabecalho } from './componentes/cabecalho/cabecalho-interface';
     ConsultaService,
     PacienteService,
     AtendimentoService,
-    CompartilhamentoDadosService
+    CompartilhamentoDadosService,
+    BrowserAnimationsModule
   ]
 })
 export class AppComponent implements AfterContentChecked {

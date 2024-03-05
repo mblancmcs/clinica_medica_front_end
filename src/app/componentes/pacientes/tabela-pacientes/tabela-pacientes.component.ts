@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalPacienteComponent } from '../modal-paciente/modal-paciente.component';
 import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { Router } from '@angular/router';
+import { highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../../animacoes';
 
 @Component({
   selector: 'app-tabela-pacientes',
@@ -20,6 +21,10 @@ import { Router } from '@angular/router';
     EncurtarNomePipe
   ],
   providers:[],
+  animations: [
+    highlightedStateTrigger,
+    listStateTrigger
+  ],
   templateUrl: './tabela-pacientes.component.html',
   styleUrl: './tabela-pacientes.component.css'
 })
@@ -32,6 +37,7 @@ export class TabelaPacientesComponent implements OnInit, OnDestroy {
   alertSemAtendimentos = false;
   getPacientes!:GetPaciente;
   getPacientesPorCpf:GetPaciente = new ModeloGetPaciente();
+  indexPaciente = -1;
   private pacienteSubscription = new Subscription();
 
   pacientesPorCpf$ = this.campoCpf.valueChanges.pipe(

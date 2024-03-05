@@ -15,24 +15,26 @@
     </thead>
     <tbody [hidden]="consultasPorCpf"
       *ngIf="getConsultas.content.length !== 0, else semConsultas">
-      <tr *ngFor="let consulta of getConsultas.content"
+      <tr *ngFor="let consulta of getConsultas.content; let i = index"
+      (mouseover)="indexConsulta = i"
+      [@highlightedState]="indexConsulta === i ? 'highlighted' : 'default'"
       class="areaClicavel" (click)="detalhesConsulta(consulta)">
-        <td>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
-        <td>{{consulta.planoParticular | slice:0:20 }}</td>
-        <td>{{consulta.motivo | slice:0:20}}</td>
+        <td @listState>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
+        <td @listState>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
+        <td @listState>{{consulta.planoParticular | slice:0:20 }}</td>
+        <td @listState>{{consulta.motivo | slice:0:20}}</td>
       </tr>
     </tbody>
     <tbody [hidden]="!consultasPorCpf" *ngIf="consultasPorCpf$ | async" >
       <tr *ngFor="let consulta of getConsultasPorCpf.content"
       class="areaClicavel" (click)="detalhesConsulta(consulta)">
-        <td>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
-        <td>{{consulta.planoParticular | slice:0:20 }}</td>
-        <td>{{consulta.motivo | slice:0:20 }}</td>
+        <td @listState>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
+        <td @listState>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
+        <td @listState>{{consulta.planoParticular | slice:0:20 }}</td>
+        <td @listState>{{consulta.motivo | slice:0:20 }}</td>
       </tr>
     </tbody>
-    <tbody *ngIf="consultasPorCpf && getConsultasPorCpf.content.length === 0">
+    <tbody @listState *ngIf="consultasPorCpf && getConsultasPorCpf.content.length === 0">
       <tr>
         <td colspan="4" style="color:red">Sem consultas</td>
       </tr>

@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { EncurtarNomePipe } from '../../pipes/encurtar-nome.pipe';
 import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
+import { highlightedStateTrigger, listStateTrigger } from '../../animacoes';
 
 @Component({
   selector: 'app-historico-atendimentos',
@@ -23,6 +24,10 @@ import { AutenticacaoService } from '../../service/autenticacao/autenticacao.ser
     EncurtarNomePipe
   ],
   providers: [],
+  animations: [
+    listStateTrigger,
+    highlightedStateTrigger
+  ],
   templateUrl: './historico-atendimentos.component.html',
   styleUrl: './historico-atendimentos.component.css'
 })
@@ -41,6 +46,7 @@ export class HistoricoAtendimentosComponent implements OnInit, OnDestroy {
   totalPaginas = 0;
   alertSemAtendimentos = false;
   atendimentosPorCpf = false;
+  indexAtendimento = -1;
 
   atendimentosPorCpf$ = this.campoCpf.valueChanges.pipe(
     filter(input => input !== null),

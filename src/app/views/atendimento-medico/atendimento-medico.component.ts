@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AtendimentoModal } from '../../componentes/modais-confirmacao/interface-modais';
 import { ModalAtendimentoConfirmadoComponent } from '../../componentes/modais-confirmacao/modal-atendimento-confirmado/modal-atendimento-confirmado.component';
 import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
+import { enabledButtonTrigger } from '../../animacoes';
 
 @Component({
   selector: 'app-atendimento-medico',
@@ -28,6 +29,9 @@ import { AutenticacaoService } from '../../service/autenticacao/autenticacao.ser
     MatIconModule
   ],
   providers: [],
+  animations: [
+    enabledButtonTrigger
+  ],
   templateUrl: './atendimento-medico.component.html',
   styleUrl: './atendimento-medico.component.css'
 })

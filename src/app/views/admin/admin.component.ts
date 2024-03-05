@@ -14,6 +14,7 @@ import { UsuarioModal } from '../../componentes/modais-confirmacao/interface-mod
 import { ModalUsuarioConfirmadoComponent } from '../../componentes/modais-confirmacao/modal-usuario-confirmado/modal-usuario-confirmado.component';
 import { MensagemComponent, MensagemValidacao } from '../../componentes/mensagem/mensagem.component';
 import { CustomValidators } from '../../CustomValidators';
+import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../animacoes';
 
 @Component({
   selector: 'app-admin',
@@ -26,6 +27,12 @@ import { CustomValidators } from '../../CustomValidators';
     MensagemComponent
   ],
   providers: [],
+  animations: [
+    listStateTrigger,
+    highlightedStateTrigger,
+    shakeTrigger,
+    enabledButtonTrigger
+  ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
@@ -46,6 +53,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     btn: 'splitscreen_add',
     rota: 'consulta'
   }
+  indexUser = -1;
   formulario!:FormGroup;
   getUsuarios:GetUsuarios = new GetModeloUsuarios();
   paginaAtual = 0;
