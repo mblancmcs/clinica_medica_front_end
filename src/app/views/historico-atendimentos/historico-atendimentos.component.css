@@ -1,13 +1,10 @@
 
-.container {
-  display: flex;
+.pag-historico {
+  display:flex;
   flex-direction: column;
-  justify-content: center;
-  width:1000px;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-#cpf-historico-atendimentos {
-  width: 100%;
+.cpf-consultas {
   text-align: right;
 }

@@ -1,11 +1,18 @@
 
 .container {
   display:grid;
+  /* position:fixed; */
   width: 100vw;
+  margin-bottom: 15px;
   grid-template-columns: repeat(3, 1fr);
   height:50px;
-  border-bottom: 1px solid #FFF;
-  background: linear-gradient(90deg, rgba(72,203,230,1) 0%,  rgba(30,255,117,1) 100%);
+  box-shadow: 0px 0px 30px 5px rgba(201,201,201,0.7);
+  border-radius: 20px;
+  background: rgba(201,201,201,0.7);
+}
+
+.text-navbar {
+  display:none;
 }
 
 .titulo-clinica {
@@ -27,29 +34,66 @@
 
 .icons-admin-div {
   display:grid;
+  width:100%;
+  background-color:  rgba(201,201,201,0.5);
   grid-template-columns: repeat(3, 1fr) 60px;
 }
 
 .icons-div {
   display:grid;
+  width: 100%;
+  background-color:  rgba(201,201,201,0.5);
   grid-template-columns: 1fr 60px;
 }
 
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 mat-icon {
-  color: #FFF;
   margin: auto auto;
   height:fit-content;
   width: fit-content;
-  border: solid 2px #FFF;
+  /* color: rgba(72,203,230,1); */
+  background-color: #FFF;
+  /* border: solid 2px rgba(72,203,230,1); */
   border-radius: 5px;
+  border: solid 2px #ffffff;
+  box-shadow: 0px 0px 5px 1px;
+  color: #FFF;
   padding:2px;
   font-size:1.7rem;
   font-weight: 600;
   cursor: pointer;
 }
 
+mat-icon.btn-atendente {
+  background-color: transparent;
+  /* color: rgba(72,203,230,1); */
+  /* border-color: rgb(72,203,230,1); */
+  /* color: rgba(12, 223, 93); */
+  /* border-color: rgb(12, 223, 93); */
+}
+
+mat-icon.btn-medico {
+  background-color: transparent;
+  /* color: rgba(30,255,117,1); */
+  /* border-color: rgba(30,255,117,1); */
+}
+
+mat-icon.btn-admin {
+  background-color: transparent;
+  color: #f4e000;
+  border-color: #f4e000;
+}
+
 mat-icon.icon-logout {
+  background-color: transparent;
   margin-right: 10px;
+  color: #7a7a7a;
+  border: solid 1px #7a7a7a;
 }
 
 #btn-event {
@@ -61,4 +105,44 @@ mat-icon.icon-logout {
   background-color: transparent;
   color: #FFF;
   font-size: 1.1rem;
+}
+
+@media (max-width:768px) {
+  .titulo-clinica {
+    display:none;
+  }
+
+  .text-navbar {
+    display:inline-block;
+  }
+
+  .container {
+    grid-template-columns: 1fr 60px;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    margin-bottom: 10px;
+  }
+
+  li .text-navbar {
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .icons-admin-div {
+    display:grid;
+    width:100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr) 60px;
+  }
+
+  .icons-div {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr) 60px;
+  }
 }

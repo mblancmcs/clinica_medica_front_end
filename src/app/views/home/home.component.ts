@@ -8,6 +8,7 @@ import { Autenticacao } from '../../models/autenticacao-interfaces';
 import { Subscription } from 'rxjs';
 import { MensagemComponent, MensagemValidacao } from '../../componentes/mensagem/mensagem.component';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     MensagemComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

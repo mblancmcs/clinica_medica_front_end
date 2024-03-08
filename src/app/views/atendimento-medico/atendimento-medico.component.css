@@ -7,7 +7,15 @@
 .form-atendimento {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 50px 1fr auto
+}
+
+.grid-item {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.grid-item > label {
+  display: block;
 }
 
 button {
@@ -30,7 +38,7 @@ textarea {
   resize: vertical;
   max-height: 200px;
   min-width: 50px;
-  max-width: 90%;
+  max-width: 300px;
 }
 
 .campos-obrigatorios {
@@ -43,4 +51,43 @@ textarea {
 
 div.campos-obrigatorios {
   margin-left: 15px;
+}
+
+@media (max-width:768px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width:600px) {
+  .form-atendimento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-item {
+    display: grid;
+    width: fit-content;
+    grid-template-columns: 100px 1fr;
+    gap:15px;
+  }
+
+  .grid-item > label {
+    display: inline-block;
+  }
+
+  button {
+    grid-column:1/2;
+  }
+
+  .campos-obrigatorios {
+    grid-column: 1/2;
+  }
+
+  textarea {
+    min-width: 200px;
+  }
 }

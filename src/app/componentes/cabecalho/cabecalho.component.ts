@@ -20,17 +20,20 @@ import { CommonModule } from '@angular/common';
 export class CabecalhoComponent implements OnInit, OnDestroy {
 
   cabecalhoAdminInfo:Cabecalho = {
-    titulo: 'Página administrativa',
+    titulo: 'Painel Administrativo',
+    tituloBtn: 'Painel Administrativo',
     btn: 'shield_person',
     rota: 'admin'
   }
   cabecalhoMedicoInfo:Cabecalho = {
     titulo: 'Atendimentos',
+    tituloBtn: 'Atendimentos',
     btn: 'stethoscope',
     rota: 'atendimento'
   }
   cabecalhoAtendenteInfo:Cabecalho = {
     titulo: 'Consultas',
+    tituloBtn: 'Consultas',
     btn: 'splitscreen_add',
     rota: 'consulta'
   }

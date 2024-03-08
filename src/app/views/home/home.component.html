@@ -1,6 +1,9 @@
 <div class="container-home">
   <div class="home-bloco-esquerda">
-    <span class="titulo">Clinica médica</span>
+    <div class="area-logo">
+      <img class="logo" src="/assets/img/logos/logo03-sem-fundo.png"
+      alt="Logo da clínica médica com mãos abertas e uma cruz">
+    </div>
   </div>
   <div class="home-bloco-direita">
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
@@ -13,7 +16,9 @@
         <div *ngIf="erroLogin" class="mensagem-validacao">
           <app-mensagem [mensagemValidacao]="mensagemValidacao" ></app-mensagem>
         </div>
-        <input class="btn-form" type="submit" value="Acessar"/>
+        <button type="submit">
+          <mat-icon class="material-symbols-outlined">login</mat-icon>
+        </button>
       </div>
   </form>
   </div>

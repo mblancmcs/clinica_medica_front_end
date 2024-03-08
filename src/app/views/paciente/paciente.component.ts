@@ -48,6 +48,7 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   cabecalhoInfo:Cabecalho = {
     titulo: 'Pacientes',
+    tituloBtn: 'Consultas',
     btn: 'splitscreen_add',
     rota: 'consulta'
   }

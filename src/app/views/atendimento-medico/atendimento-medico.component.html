@@ -4,14 +4,22 @@
 </div>
 <form class="form-atendimento" [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <input type="hidden" formControlName="id" id="id" />
-  <label>Diagnóstico<span class="campos-obrigatorios"> *</span></label>
-  <label>Receita de remédios</label>
-  <label>Solicitação de retorno</label>
-  <label>Complemento</label>
-  <textarea formControlName="diagnostico" id="diagnostico"></textarea>
-  <textarea formControlName="receitaRemedios" id="receitaRemedios"></textarea>
-  <textarea formControlName="solicitacaoRetorno" id="solicitacaoRetorno"></textarea>
-  <textarea formControlName="complemento" id="complemento"></textarea>
+  <div class="grid-item">
+    <label>Diagnóstico<span>&nbsp;*</span></label>
+    <textarea formControlName="diagnostico" id="diagnostico"></textarea>
+  </div>
+  <div class="grid-item">
+    <label>Receita de remédios</label>
+    <textarea formControlName="receitaRemedios" id="receitaRemedios"></textarea>
+  </div>
+  <div class="grid-item">
+    <label>Solicitação de retorno</label>
+    <textarea formControlName="solicitacaoRetorno" id="solicitacaoRetorno"></textarea>
+  </div>
+  <div class="grid-item">
+    <label>Complemento</label>
+    <textarea formControlName="complemento" id="complemento"></textarea>
+  </div>
   <div class="campos-obrigatorios">
     <span>* campos obrigatórios</span>
   </div>

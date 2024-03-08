@@ -13,7 +13,7 @@
 }
 
 .cadastrarAtualizar {
-  background: #a1a1a1;
+  /* background: #a1a1a1; */
 }
 
 .modal-confirm.cadastrarAtualizar h1,
@@ -28,7 +28,7 @@
 }
 
 .excluir {
-  background: #a1a1a1;
+  /* background: #a1a1a1; */
 }
 
 .modal-confirm.excluir h1 {
@@ -47,7 +47,7 @@
 }
 
 .erroOpcao {
-  background:#a1a1a1;
+  /* background:#a1a1a1; */
 }
 
 .modal-confirm.erroOpcao h1 {
@@ -67,7 +67,7 @@
 
 .erro {
   padding-bottom:15px;
-  background: #a1a1a1;
+  /* background: #a1a1a1; */
 }
 
 .erro h1,
@@ -82,7 +82,7 @@
 }
 
 .confirmadoExcluir {
-  background: #a1a1a1;
+  /* background: #a1a1a1; */
   padding-bottom:15px;
 }
 

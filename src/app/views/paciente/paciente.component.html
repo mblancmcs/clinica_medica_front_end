@@ -2,9 +2,9 @@
 <div class="container-grid">
   <div>
     <form class="form-paciente" [formGroup]="formulario" (ngSubmit)="onSubmit()" >
-      <label for="nome">Nome<span class="campos-obrigatorios"> *</span></label>
+      <label for="nome">Nome<span>&nbsp;*</span></label>
       <input type="text" formControlName="nome" id="nome" />
-      <label for="cpf" >CPF<span class="campos-obrigatorios"> *</span></label>
+      <label for="cpf" >CPF<span>&nbsp;*</span></label>
       <div>
         <div class="input-btn-cpf">
           <input type="text" [@shakeAnimation]="cpfState" formControlName="cpf" mask="000.000.000-00"
@@ -16,9 +16,9 @@
           class: 'erro'
         }" ></app-mensagem>
       </div>
-      <label for="dataNascimento" >Data de nascimento<span class="campos-obrigatorios"> *</span></label>
+      <label for="dataNascimento" >Data de nascimento<span>&nbsp;*</span></label>
       <input type="date" max="{{dataAtual}}" formControlName="dataNascimento" id="dataNascimento" />
-      <label for="telefone" >Telefone<span class="campos-obrigatorios"> *</span></label>
+      <label for="telefone" >Telefone<span>&nbsp;*</span></label>
       <input type="text" mask="(00)000000009" formControlName="telefone" id="telefone" />
       <div class="campos-obrigatorios">
         <span>* campos obrigatórios</span>

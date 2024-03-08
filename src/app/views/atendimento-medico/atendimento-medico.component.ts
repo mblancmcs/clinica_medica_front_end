@@ -39,6 +39,7 @@ export class AtendimentoMedicoComponent implements OnInit {
 
   cabecalhoInfo:Cabecalho = {
     titulo: 'Atendimentos',
+    tituloBtn: 'Histórico de atendimentos',
     btn: 'manage_search',
     rota: 'historicoAtendimentos'
   }

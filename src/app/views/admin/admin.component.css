@@ -2,7 +2,7 @@
   display: grid;
   max-width: 400px;
   grid-template-columns: 1fr 1fr;
-  /* grid-template-rows: repeat(2, 40px) 100px 30px; */
+  margin: 20px 0;
 }
 
 button {

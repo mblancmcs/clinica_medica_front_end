@@ -49,6 +49,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
   cabecalhoInfo:Cabecalho = {
     titulo: 'Consultas',
+    tituloBtn: 'Pacientes',
     btn: 'digital_wellbeing',
     rota: 'paciente'
   }

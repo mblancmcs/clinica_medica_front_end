@@ -35,6 +35,7 @@ export class HistoricoAtendimentosComponent implements OnInit, OnDestroy {
 
   cabecalhoInfo:Cabecalho = {
     titulo: 'Histórico de atendimentos',
+    tituloBtn: 'Atendimentos',
     btn: 'stethoscope',
     rota: 'atendimento'
   }
