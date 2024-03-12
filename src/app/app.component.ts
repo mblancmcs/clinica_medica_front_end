@@ -54,7 +54,6 @@ export class AppComponent implements AfterContentChecked {
   ) {
     const token = localStorage.getItem('token') === null ? '' : localStorage.getItem('token') as string;
     this.userRole = this.JwtService.getClaim(token, 'role');
-    console.log('user role: ', this.userRole);
   }
 
   ngAfterContentChecked(): void {

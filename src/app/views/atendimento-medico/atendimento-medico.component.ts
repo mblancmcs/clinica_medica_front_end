@@ -1,4 +1,4 @@
-import { ConsultasDoDiaComponent } from './../../componentes/consultas/consultas-do-dia/consultas-do-dia.component';
+import { AtendimentosDoDiaComponent } from '../../componentes/atendimento/atendimentos-do-dia/atendimentos-do-dia.component';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,7 +7,7 @@ import { Atendimento, AtualizarAtendimento } from '../../models/atendimento-inte
 import { ConsultaService } from '../../service/consulta/consulta.service';
 import { Consulta, GetConsulta } from '../../models/consulta-interfaces';
 import { CommonModule } from '@angular/common';
-import { ConsultasPorCpfComponent } from '../../componentes/consultas/consulta-atendimento/consulta-atendimento.component';
+import { AtendimentosPorCpfComponent } from '../../componentes/atendimento/atendimentos-cpf/atendimentos-cpf.component';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CompartilhamentoDadosService } from '../../service/compartilhamento-dados.service';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho-interface';
@@ -24,8 +24,8 @@ import { enabledButtonTrigger } from '../../animacoes';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    ConsultasDoDiaComponent,
-    ConsultasPorCpfComponent,
+    AtendimentosDoDiaComponent,
+    AtendimentosPorCpfComponent,
     MatIconModule
   ],
   providers: [],
@@ -94,10 +94,7 @@ export class AtendimentoMedicoComponent implements OnInit {
 
   atendimentoRecebido($event:Atendimento) {
     this.cpfAConsultar = $event.consulta.dadosPaciente.cpf;
-    console.log("diagnostico do atendimento: " + $event.diagnostico);
     $event.diagnostico !== null ? this.btnNome = 'edit_note' : this.btnNome = 'forms_add_on';
-    console.log("$event.diagnostico: " + $event.diagnostico);
-    console.log("btnNome: " + this.btnNome);
     if($event.id !== -1) {
       this.resetarFormulario();
 
@@ -107,7 +104,7 @@ export class AtendimentoMedicoComponent implements OnInit {
       this.formulario.get('solicitacaoRetorno')?.enable();
       this.formulario.get('complemento')?.enable();
 
-      this.formulario.patchValue({ // também tem o setValue()
+      this.formulario.patchValue({
         id: $event.id,
         diagnostico: $event.diagnostico,
         receitaRemedios: $event.receitaRemedios,

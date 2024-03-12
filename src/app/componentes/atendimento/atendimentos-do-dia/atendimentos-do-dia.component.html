@@ -8,7 +8,7 @@
       <th>Senha</th>
       <th>Consultar</th>
     </thead>
-    <tbody *ngIf="atendimentosDoDia.content.length > 0, else semConsultas">
+    <tbody *ngIf="atendimentosDoDia.content.length > 0, else semAtendimentos">
       <tr *ngFor="let atendimento of atendimentosDoDia.content, let i = index"
         (mouseover)="indexAtendimento = i"
         [@highlightedState]="indexAtendimento === i ? 'highlighted' : 'default'">
@@ -33,8 +33,8 @@
     </tbody>
   </table>
 </div>
-<ng-template #semConsultas>
+<ng-template #semAtendimentos>
   <tbody>
-    <td @listState colspan="5" style="color:red">Sem consultas hoje</td>
+    <td @listState colspan="5" style="color:red">Sem atendimentos hoje</td>
   </tbody>
 </ng-template>

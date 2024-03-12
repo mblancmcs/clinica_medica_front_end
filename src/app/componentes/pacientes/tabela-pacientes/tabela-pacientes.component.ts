@@ -61,7 +61,7 @@ export class TabelaPacientesComponent implements OnInit, OnDestroy {
       console.log(erro);
       this.paginaAtual = 0;
       this.totalPaginas = this.getPacientes.totalPages;
-      return of(); // operador do rxjs que pode emitir um valor e "completar" o Observable
+      return of();
     })
   )
 
@@ -94,11 +94,8 @@ export class TabelaPacientesComponent implements OnInit, OnDestroy {
       width: '700px',
       data: paciente
     }).afterClosed().subscribe(() => {
-      this.recarregarComponente();
+      this.consultaPorCpf ?  this.buscarPorCpf() : this.listarPacientes(this.paginaAtual);
     })
-    /* dialogRef.afterClosed().subscribe(resultado  => {
-
-    }) */
   }
 
   listarPacientes(pagina = 0) {

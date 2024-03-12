@@ -13,11 +13,11 @@ export class PacienteService {
   private pacientesSubject = new BehaviorSubject<GetPaciente>(new ModeloGetPaciente());
   private mensagemErroSubject = new Subject<string>();
   private dadoCompartilhadoSubject = new Subject<Paciente>();
-  pacientes$ = this.pacientesSubject.asObservable(); // para ser usado no template com o "| async" e alterar quando houver mudanças
+  pacientes$ = this.pacientesSubject.asObservable();
 
   constructor(private http:HttpClient) { }
 
-  listarPacientes(pagina?:number):void { // como está usando o BehaviorSubject, o array será modificado quando houver mudanças, não retornando um observable
+  listarPacientes(pagina?:number):void {
     let params = new HttpParams();
     if(pagina) {
       params = params.append('page', pagina);

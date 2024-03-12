@@ -68,7 +68,7 @@ export class HistoricoAtendimentosComponent implements OnInit, OnDestroy {
       console.log(erro);
       this.paginaAtual = 0;
       this.totalPaginas = this.getAtendimentos.totalPages;
-      return of(); // operador do rxjs que pode emitir um valor e "completar" o Observable
+      return of();
     })
   )
 
@@ -108,10 +108,6 @@ export class HistoricoAtendimentosComponent implements OnInit, OnDestroy {
     }).afterClosed().subscribe(() => {
       this.atendimentosPorCpf ? this.consultaCpf(this.paginaAtual) :  this.listarAtendimentos();
     })
-
-    /* dialogRef.afterClosed().subscribe(resultado  => {
-
-    }) */
   }
 
   consultaCpf(pagina = 0) {

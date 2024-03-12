@@ -11,9 +11,7 @@ export class ConsultaService {
   private api = 'http://localhost:8080/consulta';
   private consultasSubject = new BehaviorSubject<GetConsulta>(new getModeloGetConsulta());
   private mensagemErro = new Subject<any>();
-  // private consultasPorCpfSubject = new BehaviorSubject<GetConsulta>(new getModeloConsulta());
   public consultas$ = this.consultasSubject.asObservable();
-  // public consultasPorCpf$ = this.consultasPorCpfSubject.asObservable();
   public mensagemErro$ = this.mensagemErro.asObservable();
   public dadoCompartilhadoSubject = new Subject<Consulta>();
 
@@ -40,13 +38,6 @@ export class ConsultaService {
     if(pagina) {
       params = params.append('page', pagina);
     }
-    /* this.http.get<GetConsulta>(`${this.api}/cpf=${cpf}`, {params}).subscribe((consultas) => {
-      let consultasTemporarias = this.consultasPorCpfSubject.getValue();
-      consultasTemporarias = consultas;
-      consultasTemporarias.content = consultas.content
-        .filter(consulta => consulta.id !== -1);
-      this.consultasPorCpfSubject.next(consultasTemporarias);
-    }); */
     return this.http.get<GetConsulta>(`${this.api}/cpf=${cpf}`, {params});
   }
 
@@ -80,8 +71,8 @@ export class ConsultaService {
         consultasTemporarias.content.unshift(consulta);
         this.consultasSubject.next(consultasTemporarias);
         this.setDadoCompartilhado(consulta);
-      }, // ver sobre o tratamento
-      error: (erro) => { // deve ser melhor chamar o modal aqui pelo menos por enquanto ou definitivo, não sei
+      },
+      error: (erro) => {
         this.mensagemErro.next(erro.error);
         return throwError(erro);
       }

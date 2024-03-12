@@ -43,11 +43,8 @@ export class AtendimentoService {
     let dataAtual = new Date().toISOString().slice(0, 10);
     this.http.get<GetAtendimentos>(`${this.api}/cpf=${cpf}`, {params}).subscribe((atendimentos) => {
       let atendimentosTemporarios = atendimentos;
-      console.log(atendimentos);
       atendimentosTemporarios.content = atendimentos.content.filter(atendimento =>
-        atendimento.id !== -1 && atendimento.consulta.data.slice(0, 10) !== dataAtual)
-      console.log(atendimentos);
-      console.log(atendimentosTemporarios);
+        atendimento.id !== -1 && atendimento.consulta.data.slice(0, 10) !== dataAtual);
       this.atendimentosPorCpfSubject.next(atendimentosTemporarios);
     })
   }
@@ -58,12 +55,6 @@ export class AtendimentoService {
       params = params.append('page', pagina);
     }
     return this.http.get<GetAtendimentos>(`${this.api}/cpf=${cpf}`, {params});
-    /* this.http.get<GetAtendimentos>(`${this.api}/cpf=${cpf}`, {params}).subscribe((atendimentos) => {
-       let atendimentosTemporarios = this.atendimentosPorCpfSubject.getValue();
-      atendimentosTemporarios.content = atendimentosTemporarios.content
-        .filter(atendimento => atendimento.id !== -1).concat(atendimentos.content);
-      this.atendimentosPorCpfSubject.next(atendimentos);
-    }) */
   }
 
   listarAtendimentosPorData(data:string):void {

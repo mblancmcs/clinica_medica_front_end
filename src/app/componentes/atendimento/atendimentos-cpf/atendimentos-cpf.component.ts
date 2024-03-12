@@ -5,13 +5,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { Atendimento, GetAtendimentos, modeloAtendimento, modeloGetAtendimentos } from '../../../models/atendimento-interfaces';
 import { AtendimentoService } from '../../../service/atendimento/atendimento.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalAtendimentoComponent } from '../../atendimento/modal-atendimento/modal-atendimento.component';
+import { ModalAtendimentoComponent } from '../modal-atendimento/modal-atendimento.component';
 import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { Router } from '@angular/router';
 import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../../animacoes';
 
 @Component({
-  selector: 'app-consultas-por-cpf',
+  selector: 'app-atendimentos-por-cpf',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,10 +23,10 @@ import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeT
     listStateTrigger,
     highlightedStateTrigger
   ],
-  templateUrl: './consulta-atendimento.component.html',
-  styleUrl: './consulta-atendimento.component.css'
+  templateUrl: './atendimentos-cpf.component.html',
+  styleUrl: './atendimentos-cpf.component.css'
 })
-export class ConsultasPorCpfComponent implements OnDestroy, OnChanges {
+export class AtendimentosPorCpfComponent implements OnDestroy, OnChanges {
 
   atendimentosPorCpf:GetAtendimentos = new modeloGetAtendimentos();
   consultasSubscrition:Subscription = new Subscription();
@@ -61,10 +61,6 @@ export class ConsultasPorCpfComponent implements OnDestroy, OnChanges {
     }).afterClosed().subscribe(() => {
       this.atendimentoService.listarAtendimentosPorCpf$(this.cpf, this.paginaAtual);
     })
-
-    /* dialogRef.afterClosed().subscribe(resultado  => {
-
-    }) */
   }
 
   proximaPagina() {
@@ -79,7 +75,6 @@ export class ConsultasPorCpfComponent implements OnDestroy, OnChanges {
           console.log('Erro: ' + erro);
         }
       })
-      console.log(this.atendimentosPorCpf);
     } else {
       this.paginaAtual--;
       this.alertSemAtendimentos = true;
@@ -98,7 +93,6 @@ export class ConsultasPorCpfComponent implements OnDestroy, OnChanges {
           console.log('Erro: ' + erro);
         }
       })
-      console.log(this.atendimentosPorCpf);
     } else {
       this.paginaAtual++;
       this.alertSemAtendimentos = true;

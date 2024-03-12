@@ -185,7 +185,6 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
   idPacientePorCpf(): void {
     const cpf = this.formulario.value.cpf;
-    console.log(cpf);
     if(cpf) {
       this.consultaSubscription = this.pacienteService.listarPacientePorCpf(cpf).subscribe({
         next: (paciente) => {

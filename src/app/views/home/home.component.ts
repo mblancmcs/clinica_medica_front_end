@@ -89,7 +89,6 @@ export class HomeComponent implements OnInit {
         console.error(erro);
       }
     })
-    // this.formSubmitAttempt = true;
   }
 
 }

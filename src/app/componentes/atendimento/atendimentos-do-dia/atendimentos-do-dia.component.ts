@@ -10,7 +10,7 @@ import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../../animacoes';
 
 @Component({
-  selector: 'app-consultas-do-dia',
+  selector: 'app-atendimentos-do-dia',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,10 +23,10 @@ import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeT
     highlightedStateTrigger,
     enabledButtonTrigger
   ],
-  templateUrl: './consultas-do-dia.component.html',
-  styleUrl: './consultas-do-dia.component.css'
+  templateUrl: './atendimentos-do-dia.component.html',
+  styleUrl: './atendimentos-do-dia.component.css'
 })
-export class ConsultasDoDiaComponent implements OnInit, OnDestroy {
+export class AtendimentosDoDiaComponent implements OnInit, OnDestroy {
 
   atendimentosDoDia!:GetAtendimentos;
   atendimentoSubscription:Subscription = new Subscription();

@@ -85,6 +85,8 @@ mat-icon.btn-medico {
 
 mat-icon.btn-admin {
   background-color: transparent;
+  box-shadow: none;
+  font-weight: 600;
   color: #f4e000;
   border-color: #f4e000;
 }

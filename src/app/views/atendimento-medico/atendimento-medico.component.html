@@ -1,6 +1,6 @@
 <div class="container">
-  <app-consultas-do-dia (atendimentoEmitter)="atendimentoRecebido($event)"></app-consultas-do-dia>
-  <app-consultas-por-cpf [cpf]="cpfAConsultar"></app-consultas-por-cpf>
+  <app-atendimentos-do-dia (atendimentoEmitter)="atendimentoRecebido($event)"></app-atendimentos-do-dia>
+  <app-atendimentos-por-cpf [cpf]="cpfAConsultar"></app-atendimentos-por-cpf>
 </div>
 <form class="form-atendimento" [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <input type="hidden" formControlName="id" id="id" />

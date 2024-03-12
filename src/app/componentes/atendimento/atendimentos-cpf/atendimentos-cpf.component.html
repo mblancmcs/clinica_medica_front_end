@@ -7,7 +7,7 @@
       <th>Motivo</th>
       <th>Diagnóstico</th>
     </thead>
-    <tbody *ngIf="atendimentosPorCpf.content.length > 0, else semConsultas">
+    <tbody *ngIf="atendimentosPorCpf.content.length > 0, else semAtendimentos">
       <tr *ngFor="let atendimento of atendimentosPorCpf.content, let i = index"
       (mouseover)="indexAtendimento = i"
       [@highlightedState]="indexAtendimento === i ? 'highlighted' : 'default'"
@@ -25,7 +25,7 @@
     <mat-icon class="material-symbols-outlined areaClicavel" (click)="proximaPagina()">arrow_forward</mat-icon>
   </div>
 </div>
-<ng-template #semConsultas>
+<ng-template #semAtendimentos>
   <tbody>
     <td @listState colspan="4" style="color:red">Sem histórico de atendimentos</td>
   </tbody>

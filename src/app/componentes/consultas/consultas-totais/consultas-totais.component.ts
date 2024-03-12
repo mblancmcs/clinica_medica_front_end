@@ -62,7 +62,7 @@ export class ConsultasTotaisComponent implements OnInit, OnDestroy {
       console.log(erro);
       this.paginaAtual = 0;
       this.totalPaginas = this.getConsultas.totalPages;
-      return of(); // operador do rxjs que pode emitir um valor e "completar" o Observable
+      return of();
     })
   )
 
@@ -96,9 +96,6 @@ export class ConsultasTotaisComponent implements OnInit, OnDestroy {
     }).afterClosed().subscribe( () => {
       this.consultasPorCpf ? this.buscarCpf() : this.listarConsultas(this.paginaAtual);
     })
-    /* dialogRef.afterClosed().subscribe(resultado  => {
-
-    }) */
   }
 
   listarConsultas(pagina = 0) {

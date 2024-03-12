@@ -7,7 +7,7 @@ export const listStateTrigger = trigger('listState', [
         opacity: 0,
         transform: 'translateX(100%)'
       }),
-      stagger( // adiciona um delay / atraso durante a animação para os elementos
+      stagger(
         200, [animate('300ms ease-out', keyframes([
           style({
             opacity: 1,

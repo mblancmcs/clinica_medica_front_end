@@ -119,9 +119,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     }).afterClosed().subscribe(() => {
       this.listarUsuarios(this.paginaAtual);
     })
-    /* dialogRef.afterClosed().subscribe(resultado  => {
-
-    }) */
   }
 
   listarUsuarios(pagina = 0) {
@@ -161,7 +158,6 @@ export class AdminComponent implements OnInit, OnDestroy {
           console.log('Erro: ' + erro);
         }
       })
-      console.log(this.getUsuarios);
     } else {
       this.paginaAtual--;
       this.alertSemUsuarios = true;
@@ -179,7 +175,6 @@ export class AdminComponent implements OnInit, OnDestroy {
           console.log('Erro: ' + erro);
         }
       })
-      console.log(this.getUsuarios);
     } else {
       this.paginaAtual++;
       this.alertSemUsuarios = true;
@@ -240,7 +235,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     if(inputSenha.includes(' ')) {
       msgValidacao = 'Não é permitido espaços em branco';
     }
-    console.log(msgValidacao);
+    
     if(msgValidacao !== 'Necessário:') {
       this.erroSenha = true;
       this.msgValidacaoSenha.mensagem = msgValidacao;
