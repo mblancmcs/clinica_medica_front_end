@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideEnvironmentNgxMask(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
-    provideNoopAnimations()
+    // provideNoopAnimations()
 ]
 };
 
