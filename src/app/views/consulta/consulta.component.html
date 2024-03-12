@@ -10,7 +10,8 @@
         <div class="input-btn-cpf">
           <input type="text" id="cpf" [@shakeAnimation]="cpfState" formControlName="cpf" mask="000.000.000-00"
           (blur)="validarCpf()" />
-          <mat-icon class="material-symbols-outlined areaClicavel" (click)="gerarCpf()">manage_accounts</mat-icon>
+          <mat-icon mat-raised-button matTooltip="Gerar CPF (para testes)"
+          class="material-symbols-outlined areaClicavel" (click)="gerarCpf()">manage_accounts</mat-icon>
         </div>
         <app-mensagem *ngIf="cpfInvalido" [mensagemValidacao]="{
           mensagem: 'CPF inválido',
@@ -19,9 +20,9 @@
       </div>
       <label for="data">Horario<span [hidden]="!dataForm">&nbsp;*</span></label>
       <div>
-        <input type="date" id="data" min="{{dataAtual}}" formControlName="data" (change)="habilitarData()" />
+        <input type="date" id="data" min="{{dataAtualFormatada}}" formControlName="data" (change)="habilitarData()" />
         <input [hidden]="!dataForm" [required]="dataForm"
-          type="time" id="time" formControlName="hora" />
+          type="time" id="time" step="3600" formControlName="hora" />
       </div>
       <label>Plano / particular<span>&nbsp;*</span></label>
       <select formControlName="planoParticular">

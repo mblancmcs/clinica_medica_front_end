@@ -43,7 +43,7 @@
           <tr @listState class="areaClicavel" (click)="detalhesUsuario(usuario)"
             (mouseover)="indexUser = i" [@highlightedState]="indexUser === i ? 'highlighted' : 'default' " >
             <td>{{usuario.login}}</td>
-            <td>{{usuario.role}}</td>
+            <td>{{usuario.role | titlecase}}</td>
           </tr>
         </tbody>
       </table>

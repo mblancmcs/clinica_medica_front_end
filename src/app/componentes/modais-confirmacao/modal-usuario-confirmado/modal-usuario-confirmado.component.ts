@@ -24,10 +24,10 @@ export class ModalUsuarioConfirmadoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.conteudo.confirmacao === "criar" ? this.textoSenha = "Criada" : this.textoSenha = "Atualizada";
-    if(this.conteudo.confirmacao === "atualizar" && this.conteudo.usuario.password === null) {
+    this.conteudo.confirmacao === "confirmado" ? this.textoSenha = "Criada" : this.textoSenha = "Atualizada";
+    if(this.conteudo.confirmacao === "confirmadoAtualizar" && this.conteudo.usuario.password === '') {
       this.textoSenha = "Não modificada";
-    } else if(this.conteudo.confirmacao === "atualizar" && this.conteudo.usuario.password !== null) {
+    } else if(this.conteudo.confirmacao === "confirmadoAtualizar" && this.conteudo.usuario.password !== null) {
       this.textoSenha = "Atualizada"
     }
   }

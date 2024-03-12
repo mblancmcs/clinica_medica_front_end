@@ -10,11 +10,9 @@ export class ConsultaService {
 
   private api = 'http://localhost:8080/consulta';
   private consultasSubject = new BehaviorSubject<GetConsulta>(new getModeloGetConsulta());
-  private consultasPorDataSubject = new BehaviorSubject<GetConsulta>(new getModeloGetConsulta());
   private mensagemErro = new Subject<any>();
   // private consultasPorCpfSubject = new BehaviorSubject<GetConsulta>(new getModeloConsulta());
   public consultas$ = this.consultasSubject.asObservable();
-  public consultasPorData$ = this.consultasPorDataSubject.asObservable();
   // public consultasPorCpf$ = this.consultasPorCpfSubject.asObservable();
   public mensagemErro$ = this.mensagemErro.asObservable();
   public dadoCompartilhadoSubject = new Subject<Consulta>();
@@ -52,17 +50,12 @@ export class ConsultaService {
     return this.http.get<GetConsulta>(`${this.api}/cpf=${cpf}`, {params});
   }
 
-  listarConsultasPorData(data:string, pagina?:number): void {
+  listarConsultasPorData(data:string, pagina?:number): Observable<GetConsulta> {
     const params = new HttpParams();
     if(pagina) {
       params.append('page', pagina);
     }
-    this.http.get<GetConsulta>(`${this.api}/data=${data}`, {params}).subscribe((consultas) => {
-      let consultasTemporarias = this.consultasPorDataSubject.getValue();
-      consultasTemporarias.content = consultas.content
-        .filter(consulta => consulta.id !== -1);
-      this.consultasPorDataSubject.next(consultasTemporarias);
-    })
+    return this.http.get<GetConsulta>(`${this.api}/data=${data}`, {params});
   }
 
   cadastrarConsulta(consulta:MarcarConsulta): void {

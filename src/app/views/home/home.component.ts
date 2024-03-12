@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { MensagemComponent, MensagemValidacao } from '../../componentes/mensagem/mensagem.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { invalidShakeTrigger } from '../../animacoes';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,10 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  providers: []
+  providers: [],
+  animations: [
+    invalidShakeTrigger
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -32,6 +36,7 @@ export class HomeComponent implements OnInit {
     class: ''
   }
   erroLogin = false;
+  camposEmBranco = '';
   private formSubmitAttempt!: boolean;
 
   constructor(
@@ -43,18 +48,20 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       usuario: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(/(.|\s)*\S(.|\s)*/) // Regex que não permite espaços vazios
+        Validators.required
       ])],
       senha: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
+        Validators.required
       ])]
     })
   }
 
   onSubmit() {
     if(!this.formulario.valid) {
+      this.camposEmBranco = "invalido";
+      setTimeout(() => {
+        this.camposEmBranco = "";
+      }, 500);
       return;
     }
     const login:Autenticacao = {

@@ -6,13 +6,15 @@ import { Cabecalho } from './cabecalho-interface';
 import { MatIconModule } from '@angular/material/icon';
 import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
 import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-cabecalho',
   standalone: true,
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './cabecalho.component.html',
   styleUrl: './cabecalho.component.css'
@@ -20,8 +22,8 @@ import { CommonModule } from '@angular/common';
 export class CabecalhoComponent implements OnInit, OnDestroy {
 
   cabecalhoAdminInfo:Cabecalho = {
-    titulo: 'Painel Administrativo',
-    tituloBtn: 'Painel Administrativo',
+    titulo: 'Painel administrativo',
+    tituloBtn: 'Painel administrativo',
     btn: 'shield_person',
     rota: 'admin'
   }

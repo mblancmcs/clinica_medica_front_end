@@ -40,11 +40,15 @@ export class AtendimentoService {
     if(pagina) {
       params = params.append('page', pagina);
     }
+    let dataAtual = new Date().toISOString().slice(0, 10);
     this.http.get<GetAtendimentos>(`${this.api}/cpf=${cpf}`, {params}).subscribe((atendimentos) => {
       let atendimentosTemporarios = atendimentos;
-      atendimentosTemporarios.content = atendimentos.content
-        .filter(atendimento => atendimento.id !== -1)
-      this.atendimentosPorCpfSubject.next(atendimentos);
+      console.log(atendimentos);
+      atendimentosTemporarios.content = atendimentos.content.filter(atendimento =>
+        atendimento.id !== -1 && atendimento.consulta.data.slice(0, 10) !== dataAtual)
+      console.log(atendimentos);
+      console.log(atendimentosTemporarios);
+      this.atendimentosPorCpfSubject.next(atendimentosTemporarios);
     })
   }
 

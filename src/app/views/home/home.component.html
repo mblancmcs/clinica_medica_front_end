@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="home-bloco-direita">
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formulario" [@invalidShakeAnimation]="camposEmBranco" (ngSubmit)="onSubmit()">
       <span class="titulo-form">Login</span><br />
       <div class="container-form-home">
         <label for="nome_usuario">Login</label>

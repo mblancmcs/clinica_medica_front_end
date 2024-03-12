@@ -10,6 +10,7 @@ import { ModalPacienteComponent } from '../modal-paciente/modal-paciente.compone
 import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { Router } from '@angular/router';
 import { highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../../animacoes';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-tabela-pacientes',
@@ -18,9 +19,13 @@ import { highlightedStateTrigger, listStateTrigger, shakeTrigger } from '../../.
     ReactiveFormsModule,
     CommonModule,
     MatIconModule,
-    EncurtarNomePipe
+    EncurtarNomePipe,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers:[],
+  providers: [
+    provideNgxMask()
+  ],
   animations: [
     highlightedStateTrigger,
     listStateTrigger
@@ -41,7 +46,7 @@ export class TabelaPacientesComponent implements OnInit, OnDestroy {
   private pacienteSubscription = new Subscription();
 
   pacientesPorCpf$ = this.campoCpf.valueChanges.pipe(
-    filter(input => input !== null),
+    filter(input => input !== ''),
     debounceTime(150),
     distinctUntilChanged(),
     switchMap(

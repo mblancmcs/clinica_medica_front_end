@@ -25,3 +25,9 @@ button > mat-icon {
   vertical-align: middle;
   font-size: 1.5rem;
 }
+
+input[type="time"]::-webkit-inner-spin-button,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

@@ -1,7 +1,7 @@
-import { AfterContentChecked, AfterViewChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ConsultaService } from '../../service/consulta/consulta.service';
-import { Consulta, MarcarConsulta, getModeloConsulta } from '../../models/consulta-interfaces';
+import { Consulta, GetConsulta, MarcarConsulta, getModeloConsulta } from '../../models/consulta-interfaces';
 import { PacienteService } from '../../service/paciente/paciente.service';
 import { Router } from '@angular/router';
 import { CompartilhamentoDadosService } from '../../service/compartilhamento-dados.service';
@@ -9,8 +9,10 @@ import { ConsultasTotaisComponent } from '../../componentes/consultas/consultas-
 import { Observable, Subscription, catchError, of } from 'rxjs';
 import { Cabecalho } from '../../componentes/cabecalho/cabecalho-interface';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmModal, ConsultaModal } from '../../componentes/modais-confirmacao/interface-modais';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModalPadraoComponent } from '../../componentes/modais-confirmacao/modal-padrao/modal-padrao.component';
 import { ModalConsultaConfirmadaComponent } from '../../componentes/modais-confirmacao/modal-consulta-confirmada/modal-consulta-confirmada.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -31,9 +33,10 @@ import { enabledButtonTrigger, shakeTrigger } from '../../animacoes';
     ReactiveFormsModule,
     ConsultasTotaisComponent,
     MatIconModule,
+    MensagemComponent,
     NgxMaskDirective,
     NgxMaskPipe,
-    MensagemComponent
+    MatTooltipModule
   ],
   providers: [
     provideNgxMask()
@@ -60,7 +63,11 @@ export class ConsultaComponent implements OnInit, OnDestroy {
   dataForm = false;
   cpfInvalido = false;
   cpfState = '';
-  dataAtual = new Date().toISOString().slice(0, 10);
+  dataAtual = new Date();
+  dataAtualFormatada = new Date().toISOString().slice(0, 10);
+  dataBtnNaoVerMais = '';
+  mensagemConsultas!:string;
+  btnNaoVerMais = false;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -70,6 +77,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
     private authService: AutenticacaoService,
     private route: Router,
     private dialog:MatDialog,
+    public snackBar:MatSnackBar
     // public dialogRefConsulta:MatDialogRef<ModalPadraoComponent>
   ) {}
 
@@ -88,6 +96,8 @@ export class ConsultaComponent implements OnInit, OnDestroy {
         })
       }
     })
+
+    this.abrirSnackBarConsultas();
 
     this.formulario = this.formBuilder.group({
       cpf: ['', Validators.compose([
@@ -206,6 +216,18 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
   habilitarData() {
     this.formulario.value.data ? this.dataForm = true : this.dataForm = false;
+  }
+
+  abrirSnackBarConsultas() {
+    const proximoDiaMilisegundos = 86400000;
+    const proximoDia = String(new Date(this.dataAtual.getTime() + proximoDiaMilisegundos).toISOString()).slice(0, 10);
+    this.consultaService.listarConsultasPorData(proximoDia).subscribe((consultas) => {
+      let totalConsultasProximoDia = consultas.content.length;
+      let mensagem = `Há ${totalConsultasProximoDia} consulta(s) para amanhã`;
+      this.snackBar.open(mensagem, '', {
+        duration: 2000
+      })
+    })
   }
 
   validarCpf() {

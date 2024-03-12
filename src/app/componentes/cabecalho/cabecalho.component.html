@@ -9,7 +9,7 @@
     <ul [ngClass]="class" class="navbar-nav mr-auto">
       @if (role === 'ADMIN' || role === 'ATENDENTE') {
         <li class="nav-item">
-          <mat-icon
+          <mat-icon mat-raised-button matTooltip="{{cabecalhoAtendenteInfo.tituloBtn}}"
           class="nav-link material-symbols-outlined btn-atendente" (click)="btnAtendenteEvent()">
             {{cabecalhoAtendenteInfo.btn}}
           </mat-icon>
@@ -18,7 +18,7 @@
       }
       @if (role === 'ADMIN' || role === 'MEDICO') {
         <li class="nav-item">
-          <mat-icon
+          <mat-icon mat-raised-button matTooltip="{{cabecalhoMedicoInfo.tituloBtn}}"
           class="nav-link material-symbols-outlined btn-medico" (click)="btnMedicoEvent()">
             {{cabecalhoMedicoInfo.btn}}
           </mat-icon>
@@ -27,7 +27,7 @@
       }
       @if (role === 'ADMIN') {
         <li class="nav-item">
-          <mat-icon
+          <mat-icon mat-raised-button matTooltip="{{cabecalhoAdminInfo.tituloBtn}}"
           class="nav-link material-symbols-outlined btn-admin" (click)="btnAdminEvent()">
             {{cabecalhoAdminInfo.btn}}
           </mat-icon>
@@ -35,7 +35,8 @@
         </li>
       }
       <li class="nav-item">
-        <mat-icon class="nav-link material-symbols-outlined icon-logout" (click)="btnSair()">
+        <mat-icon mat-raised-button matTooltip="Sair"
+          class="nav-link material-symbols-outlined icon-logout" (click)="btnSair()">
           logout
         </mat-icon>
         <span class="text-navbar areaClicavel" (click)="btnSair()">Sair</span>

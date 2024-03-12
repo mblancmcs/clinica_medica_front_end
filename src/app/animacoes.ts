@@ -64,3 +64,20 @@ export const shakeTrigger = trigger('shakeAnimation', [
     ]))
   ])
 ])
+
+export const invalidShakeTrigger = trigger('invalidShakeAnimation', [
+  transition('* => invalido', [
+    query('input.ng-invalid, select.ng-invalid', [
+      animate('0.5s', keyframes([
+        style({ border: '2px solid red' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(0)' })
+      ]))
+    ], { optional: true })
+  ])
+])

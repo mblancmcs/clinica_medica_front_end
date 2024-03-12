@@ -58,7 +58,7 @@ export class ModalUsuariosComponent implements OnInit {
         const usuarioAtualizado:UsuarioModal = {
           titulo:'Edição',
           mensagem:'Edição realizada com sucesso!',
-          confirmacao:'confirmado',
+          confirmacao:'confirmadoAtualizar',
           usuario: atualizarUsuario
         }
         this.dialog.open(ModalUsuarioConfirmadoComponent, {

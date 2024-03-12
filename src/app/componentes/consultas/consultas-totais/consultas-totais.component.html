@@ -2,7 +2,7 @@
 <div class="tabela-paginacao">
   <div class="cpf-consultas">
     <label for="cpfConsultas">CPF</label>
-    <input type="number" [formControl]="campoCpf" />
+    <input type="text" mask="000.000.000-00" [formControl]="campoCpf" />
   </div>
   <table>
     <thead>
@@ -21,7 +21,7 @@
       class="areaClicavel" (click)="detalhesConsulta(consulta)">
         <td @listState>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
         <td @listState>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
-        <td @listState>{{consulta.planoParticular | slice:0:20 }}</td>
+        <td @listState>{{consulta.planoParticular | slice:0:20 | titlecase}}</td>
         <td @listState>{{consulta.motivo | slice:0:20}}</td>
       </tr>
     </tbody>
@@ -30,7 +30,7 @@
       class="areaClicavel" (click)="detalhesConsulta(consulta)">
         <td @listState>{{consulta.data | date:'dd/MM/yyyy HH:mm'}}</td>
         <td @listState>{{consulta.dadosPaciente.nome | encurtarNome}}</td>
-        <td @listState>{{consulta.planoParticular | slice:0:20 }}</td>
+        <td @listState>{{consulta.planoParticular | slice:0:20 | titlecase}}</td>
         <td @listState>{{consulta.motivo | slice:0:20 }}</td>
       </tr>
     </tbody>

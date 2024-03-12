@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { ValidaCpf } from '../../util/ValidaCpf';
 import { GerarCpf } from '../../util/GerarCpf';
 import { enabledButtonTrigger, shakeTrigger } from '../../animacoes';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-paciente',
@@ -31,6 +32,7 @@ import { enabledButtonTrigger, shakeTrigger } from '../../animacoes';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatTooltipModule,
     NgxMaskDirective,
     NgxMaskPipe
   ],
@@ -118,11 +120,14 @@ export class PacienteComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if(this.formulario.valid) {
+      let ddd = this.formulario.value.telefone.slice(0,2)
+      let numTelefone = this.formulario.value.telefone.slice(2)
+      const telefone = `(${ddd})${numTelefone}`;
       const paciente:CadastroPaciente = {
         nome: this.formulario.value.nome,
         cpf: this.formulario.value.cpf,
         dataNascimento: this.formulario.value.dataNascimento,
-        telefone: this.formulario.value.telefone
+        telefone: telefone
       };
       this.pacienteService.cadastrarPaciente(paciente);
       this.pacienteService.getDadoCompartilhado().subscribe({

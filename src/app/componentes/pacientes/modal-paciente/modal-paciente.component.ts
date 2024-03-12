@@ -11,6 +11,7 @@ import { ModalPadraoComponent } from '../../modais-confirmacao/modal-padrao/moda
 import { ConfirmModal, PacienteModal } from '../../modais-confirmacao/interface-modais';
 import { ModalPacienteConfirmadoComponent } from '../../modais-confirmacao/modal-paciente-confirmado/modal-paciente-confirmado.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CustomValidators } from '../../../CustomValidators';
 
 @Component({
   selector: 'app-modal-paciente',
@@ -48,7 +49,7 @@ export class ModalPacienteComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       idModal: [this.conteudo.id, Validators.required],
       nomeModal: this.conteudo.nome,
-      cpfModal: ['', Validators.required],
+      cpfModal: ['', CustomValidators.isValidCpf()],
       dataNascimentoModal: this.conteudo.dataNascimento,
       telefoneModal: [this.conteudo.telefone.join(';'), Validators.compose([
         Validators.required,

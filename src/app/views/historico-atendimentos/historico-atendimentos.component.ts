@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 import { EncurtarNomePipe } from '../../pipes/encurtar-nome.pipe';
 import { AutenticacaoService } from '../../service/autenticacao/autenticacao.service';
 import { highlightedStateTrigger, listStateTrigger } from '../../animacoes';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-historico-atendimentos',
@@ -21,9 +22,13 @@ import { highlightedStateTrigger, listStateTrigger } from '../../animacoes';
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    EncurtarNomePipe
+    EncurtarNomePipe,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [
+    provideNgxMask()
+  ],
   animations: [
     listStateTrigger,
     highlightedStateTrigger
@@ -50,7 +55,7 @@ export class HistoricoAtendimentosComponent implements OnInit, OnDestroy {
   indexAtendimento = -1;
 
   atendimentosPorCpf$ = this.campoCpf.valueChanges.pipe(
-    filter(input => input !== null),
+    filter(input => input !== ''),
     debounceTime(150),
     distinctUntilChanged(),
     switchMap(input => this.atendimentosService.listarAtendimentosPorCpf(input, this.paginaAtual)),

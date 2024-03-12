@@ -39,8 +39,8 @@ import { enabledButtonTrigger, highlightedStateTrigger, listStateTrigger, shakeT
 export class AdminComponent implements OnInit, OnDestroy {
 
   cabecalhoAdminInfo:Cabecalho = {
-    titulo: 'Painel Administrativo',
-    tituloBtn: 'Painel Administrativo',
+    titulo: 'Painel administrativo',
+    tituloBtn: 'Painel administrativo',
     btn: 'shield_person',
     rota: 'admin'
   }

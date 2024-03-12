@@ -11,6 +11,7 @@ import { EncurtarNomePipe } from '../../../pipes/encurtar-nome.pipe';
 import { Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { highlightedStateTrigger, listStateTrigger } from '../../../animacoes';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-consultas-totais',
@@ -19,9 +20,13 @@ import { highlightedStateTrigger, listStateTrigger } from '../../../animacoes';
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    EncurtarNomePipe
+    EncurtarNomePipe,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [
+    provideNgxMask()
+  ],
   animations: [
     listStateTrigger,
     highlightedStateTrigger
@@ -42,7 +47,7 @@ export class ConsultasTotaisComponent implements OnInit, OnDestroy {
   indexConsulta = -1;
 
   consultasPorCpf$ = this.campoCpf.valueChanges.pipe(
-    filter((input) => input !== null),
+    filter((input) => input !== ''),
     debounceTime(150),
     distinctUntilChanged(),
     switchMap(

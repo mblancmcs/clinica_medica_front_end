@@ -1,6 +1,8 @@
 
 .confirmado .modal-titulo .material-symbols-outlined,
-.confirmado [md-dialog-content] span {
+.confirmado [md-dialog-content] span,
+.confirmadoAtualizar .modal-titulo .material-symbols-outlined,
+.confirmadoAtualizar [md-dialog-content] span {
   color: #FFF;
   font-weight: 500;
 }

@@ -10,11 +10,13 @@ import { AtualizarConsulta, Consulta } from '../../../models/consulta-interfaces
 import { ModalConsultaConfirmadaComponent } from '../../modais-confirmacao/modal-consulta-confirmada/modal-consulta-confirmada.component';
 import { ConfirmModal, ConsultaModal } from '../../modais-confirmacao/interface-modais';
 import { ModalPadraoComponent } from '../../modais-confirmacao/modal-padrao/modal-padrao.component';
+import { CommonModule, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-modal-consulta',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatIconModule,
     MatInputModule,
@@ -42,7 +44,7 @@ export class ModalConsultaComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       idModal: [this.conteudo.id, Validators.required],
-      dataModal: {value: this.conteudo.data, disabled:true},
+      dataModal: {value: formatDate(this.conteudo.data, 'dd/MM/yyyy', 'en'), disabled:true},
       senhaModal: {value:this.conteudo.senha, disabled:true},
       planoParticularModal: this.conteudo.planoParticular,
       motivoModal: this.conteudo.motivo

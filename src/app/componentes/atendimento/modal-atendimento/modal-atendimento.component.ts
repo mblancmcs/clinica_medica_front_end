@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ModalPadraoComponent } from '../../modais-confirmacao/modal-padrao/modal-padrao.component';
 import { AtendimentoModal, ConfirmModal } from '../../modais-confirmacao/interface-modais';
 import { ModalAtendimentoConfirmadoComponent } from '../../modais-confirmacao/modal-atendimento-confirmado/modal-atendimento-confirmado.component';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-modal-atendimento',
@@ -42,7 +43,7 @@ export class ModalAtendimentoComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       idModal: [this.conteudo.id, Validators.required],
-      dataConsultaModal: [{value: this.conteudo.consulta.data, disabled: true}, Validators.required],
+      dataConsultaModal: [{value: formatDate(this.conteudo.consulta.data, 'dd/MM/yyyy', 'en'), disabled: true}, Validators.required],
       nomeModal: [{value:this.conteudo.consulta.dadosPaciente.nome, disabled: true}, Validators.required],
       motivoModal: [{value:this.conteudo.consulta.motivo, disabled: true}, Validators.required],
       diagnosticoModal: [this.conteudo.diagnostico, Validators.required],

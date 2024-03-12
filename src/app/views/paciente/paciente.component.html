@@ -9,7 +9,8 @@
         <div class="input-btn-cpf">
           <input type="text" [@shakeAnimation]="cpfState" formControlName="cpf" mask="000.000.000-00"
             value="{{cpfRecebido | mask:'000.000.000-00'}}" (change)="validarCpf()" />
-          <mat-icon class="material-symbols-outlined areaClicavel" (click)="gerarCpf()">manage_accounts</mat-icon>
+          <mat-icon mat-raised-button matTooltip="Gerar CPF (para testes)"
+            class="material-symbols-outlined areaClicavel" (click)="gerarCpf()">manage_accounts</mat-icon>
         </div>
         <app-mensagem *ngIf="cpfInvalido" [mensagemValidacao]="{
           mensagem: 'CPF inválido',
