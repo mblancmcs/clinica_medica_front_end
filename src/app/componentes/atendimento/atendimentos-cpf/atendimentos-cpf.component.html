@@ -21,12 +21,12 @@
   </table>
   <div class="paginacao">
     <mat-icon class="material-symbols-outlined areaClicavel" (click)="paginaAnterior()">arrow_back</mat-icon>
-    <div>{{totalPaginas === 0 ? 0 : paginaAtual + 1}} de {{totalPaginas}}</div>
+    <div>{{totalPaginas === 0 ? '1 de 1' : (paginaAtual + 1) + ' de ' + totalPaginas}}</div>
     <mat-icon class="material-symbols-outlined areaClicavel" (click)="proximaPagina()">arrow_forward</mat-icon>
   </div>
 </div>
 <ng-template #semAtendimentos>
   <tbody>
-    <td @listState colspan="4" style="color:red">Sem histórico de atendimentos</td>
+    <td @listState colspan="4" class="invalido">Sem histórico de atendimentos</td>
   </tbody>
 </ng-template>

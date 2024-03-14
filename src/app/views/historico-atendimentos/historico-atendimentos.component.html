@@ -40,7 +40,7 @@
       </tbody>
       <tbody *ngIf="atendimentosPorCpf && getAtendimentosPorCpf.content.length === 0" >
         <tr @listState>
-          <td colspan="5" style="color:red">Paciente sem atendimentos</td>
+          <td colspan="5" class="invalido">Paciente sem atendimentos</td>
         </tr>
       </tbody>
     </table>
@@ -56,7 +56,7 @@
 <ng-template #semAtendimentos>
   <tbody>
     <tr @listState>
-      <td colspan="5" style="color:red">Sem atendimentos</td>
+      <td colspan="5" class="invalido">Sem atendimentos</td>
     </tr>
   </tbody>
 </ng-template>

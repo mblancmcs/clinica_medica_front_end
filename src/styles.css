@@ -143,6 +143,10 @@ body {
   align-items: center;
 }
 
+.invalido {
+  color:rgb(255, 0, 0);
+}
+
 .paginacao {
   width:250px;
   margin-top:10px;
@@ -251,4 +255,3 @@ th:last-child, td:last-child {
   font-size: 2rem;
   font-weight: 600;
 }
-@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';

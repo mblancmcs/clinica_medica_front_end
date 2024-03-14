@@ -193,7 +193,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
         },
         error: () => {
           const confirmacaoDialog:ConfirmModal = {
-            titulo:'Erro',
+            titulo:'Atenção',
             mensagem:'Paciente não encontrado, cadastrar ?',
             class:'erroOpcao'
           }
