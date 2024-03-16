@@ -19,8 +19,8 @@ ng serve
 - É possível analisar a aplicação hospedada na AWS, pelo endereço: http://clinica-medica-app.s3-website-sa-east-1.amazonaws.com/
 
 Observações:
-- Não há certificado SSL, logo por mais que no link esteja com "http" no início, o navegador forçará o acesso por "https", logo é necessário alterar para "http" para acessar a aplicação hospedada.
-- 20 minutos após o último login, o banco de dados é reiniciado para o estado inicial.
+- Não há certificado SSL, logo por mais que no início do link esteja com "http", o navegador pode forçar o acesso por "https". Dessa forma pode ser necessário alterar esse inicio do endereço de "https" para "http", e assim seja possível acessar a aplicação hospedada.
+- 20 minutos após o último login, o banco de dados é reiniciado para os valores iniciais.
 
 
 ## Funcionamento
